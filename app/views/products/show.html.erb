@@ -1,0 +1,70 @@
+
+
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class ="col-md-6 mb-4">
+             <br><br>  
+                  <p>
+                <strong></strong>
+                 <%= image_tag(@product.image_url, :size => "460x580") %>
+                  <p>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          
+
+            <div class="mb-3">
+         
+            </div>
+
+            <p class="lead">
+              <span class="mr-1">
+                <br><br><br><br><br><br>
+                <p class="lead font-weight-bold">Name:</strong>
+                <%= @product.name%>
+                <strong>Price:</strong>
+               ₹<%= @product.price %>  
+              </span>
+             <s> ₹<%= @product.full_price %></s>
+            </p>
+
+            <p class="lead font-weight-bold">Description</p>
+
+            <%= @product.description%>
+               <br>
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <button class="btn btn-info"><a href="/products/<%= @product.id %>/cart">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+               <div class="col-md-4 text-center">
+                <%= link_to "+", update_cart_item_quantity_path(type: "increase", cart_item_id: cart_item.id), class: "btn btn-info", remote: true %>
+              </div>
+
+              </div>
+
+            </form>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>

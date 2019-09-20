@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center">Wishlists Products</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><a href="/product/<%= product.id %>"><%= image_tag(product.image_url, :size => "260x180") %></td>
+        <td><%#= link_to "Remove", remove_wishlist_path(product), data: {method: :delete, remote: true}  %>
+        </td>
+      </tr>
+    <% end %>
+
+      <%#= link_to "Place Order", remove_wishlist_path(product), data: {method: :delete, remote: true}, class: 'btn btn-info'  %>
+  </tbody>
+</table>
+  
+<br>
+
+

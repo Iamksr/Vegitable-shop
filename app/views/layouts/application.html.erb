@@ -1,0 +1,103 @@
+
+<!--Main Navigation-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="font-weight-light"></h1>
+        <p class="lead"></p>
+      </div>
+    </div>
+  </div>
+</header>
+    <title>ECommerceApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <% if user_signed_in? %> 
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">E-CommerceApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+             <%= form_tag "/products", :method=>"get" do %>
+             <%= text_field_tag :search, nil, :placeholder=>"search products" %>
+             <%= submit_tag "Search", class: "btn btn-outline-danger"%></li>
+             <%end %>
+        <li class="nav-item">
+          <a class="nav-link" href="/products">Product</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/carts">
+              <li class="nav item">Carts</i>
+              <%  @cart = Cart.where(is_done: false).first %>
+                <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
+                <% end %>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/wishlist"><i class="fa fa-heart">  </i>
+              <li class="nav item">WishLists</li>
+                <% if current_user.present? %><%= current_user.wishlists.count rescue nil %>
+                <% end %>
+            </a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/sign_out">LogOut</a>
+        
+           <li><em>Current User: <%= current_user.email%></em></li>
+        </li>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<% end%>
+<!-- Full Page Image Header with Vertically Centered Content -->
+
+      
+        
+  <title>Pgfh</title>
+        <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+       <% if alert %>
+           <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+     <%= yield %>
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- Footer -->
+<style type="text/css">
+  <style type="text/css">
+  .navbar-color
+{
+  background-color: darkcyan;
+}
+</style>
+
+</style>
+  </body>
+</html>
