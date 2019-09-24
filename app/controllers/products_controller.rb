@@ -52,8 +52,8 @@ def add_to_cart
             cart_item = current_cart.cart_items.new(product_id: @product.id)
           end
           cart_item.unit_price = @product.price
-          # cart_item.price = cart_item.unit_price * cart_item.quantity
-          cart_item.price = cart_item.unit_price * 1
+          cart_item.price = cart_item.unit_price * cart_item.quantity
+          # cart_item.price = cart_item.unit_price * 1
 
           if (cart_item.save)
             flash[:notice] = "Product has been added into your cart"
@@ -90,6 +90,11 @@ def add_to_cart
     @product = Product.friendly.find(params[:id])
     @remove_cart = current_cart.cart_items.where(product_id: @product.id).first.destroy
     redirect_to "/carts"
+  end
+  def remove_wishlist
+    @product = Product.friendly.find(params[:id])
+     @remove_wishlist = current_user.wishlists.where(product_id: @product.id).first.destroy
+    redirect_to "/wishlist"
   end
   # POST /products
   # POST /products.json
@@ -130,6 +135,10 @@ def add_to_cart
       format.json { head :no_content }
     end
   end
+  def cart
+    @carts = Cart.all
+    @cart_items = current_cart.cart_items
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -139,6 +148,6 @@ def add_to_cart
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :category_id, :image, :description, :full_price)
+      params.require(:product).permit(:name, :price, :category_id, :image, :description, :full_price, :quantity)
     end
 end

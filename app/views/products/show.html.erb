@@ -35,7 +35,7 @@
               <span class="mr-1">
                 <br><br><br><br><br><br>
                 <p class="lead font-weight-bold">Name:</strong>
-                <%= @product.name%>
+                <h1><%= @product.name%></h1>
                 <strong>Price:</strong>
                ₹<%= @product.price %>  
               </span>
@@ -48,14 +48,12 @@
                <br>
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-info"><a href="/products/<%= @product.id %>/cart">Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
+              <!-- <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px"> -->
+
+              <button class="btn btn-danger"><a href="/products/<%= @product.id %>/cart">Add To Cart</i>
               </button>
 
-               <div class="col-md-4 text-center">
-                <%= link_to "+", update_cart_item_quantity_path(type: "increase", cart_item_id: cart_item.id), class: "btn btn-info", remote: true %>
-              </div>
+             
 
               </div>
 

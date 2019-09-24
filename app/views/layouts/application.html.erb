@@ -45,16 +45,33 @@
              <%end %>
         <li class="nav-item">
           <a class="nav-link" href="/products">Product</a>
+          <!-- -------------------------------------------------- -->
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Search product with category
+              </a>
+              
+              <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
+                  <% Category.all.each do |f|%>
+                    <a href="/category/<%= f.id %>" class="dropdown-item">
+                        <%= f.name %><br>
+                    </a>
+                  <% end %>
+              </div>
+
+            </li>
+         <!-- --------------------------------------------------------- -->
+
           <li class="nav-item">
-            <a class="nav-link" href="/carts">
-              <li class="nav item">Carts</i>
+            <a class="nav-link" href="/cart">
+              <li class="nav item">Carts</li>
               <%  @cart = Cart.where(is_done: false).first %>
                 <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
                 <% end %>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/wishlist"><i class="fa fa-heart">  </i>
+            <a class="nav-link" href="/wishlist">
               <li class="nav item">WishLists</li>
                 <% if current_user.present? %><%= current_user.wishlists.count rescue nil %>
                 <% end %>

@@ -20,7 +20,7 @@
         <td><%= product.description %></td>
         <td><%= product.price %></td>
         <td><a href="/product/<%= product.id %>"><%= image_tag(product.image_url, :size => "260x180") %></td>
-        <td><%#= link_to "Remove", remove_wishlist_path(product), data: {method: :delete, remote: true}  %>
+         <td><%= link_to "Remove", remove_wishlist_path(product), data: {method: :delete, remote: true},class: 'btn btn-danger'  %>
         </td>
       </tr>
     <% end %>
