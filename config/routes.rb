@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :rating_reviews
   resources :addresses
   resources :cart_items
   resources :carts
+
   resources :categories
   resources :orders
   resources :products do
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'welcome#index'
+  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  get '/wishlist' => "products#wishlist"
   post '/add_to_cart/:product_id' => 'carts#add_to_cart', :as => 'add_to_cart'
@@ -32,4 +35,7 @@ Rails.application.routes.draw do
    delete 'remove_wishlist_item/:id' => "products#remove_wishlist", as: :remove_wishlist
    delete 'remove_cart_item/:id' => "products#remove_cart", as: :remove_cart
 
+
+ post 'order' => "orders#all_order_show"
+  get 'orders_history' => "orders#index"
 end

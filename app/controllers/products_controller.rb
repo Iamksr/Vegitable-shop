@@ -66,6 +66,14 @@ def add_to_cart
         redirect_to "/users/sign_in"
       end
     end
+    def product_detail
+      @reviews = @product.rating_reviews.to_a
+      @avg_rating = if @reviews.blank?
+      0
+    else
+      @product.rating_reviews.average(:rating).round(2)
+    end
+  end
 
   end
    def wishlist
@@ -89,7 +97,7 @@ def add_to_cart
    def remove_cart
     @product = Product.friendly.find(params[:id])
     @remove_cart = current_cart.cart_items.where(product_id: @product.id).first.destroy
-    redirect_to "/carts"
+    redirect_to "/cart"
   end
   def remove_wishlist
     @product = Product.friendly.find(params[:id])

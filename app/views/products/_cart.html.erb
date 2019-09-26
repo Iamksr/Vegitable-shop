@@ -10,7 +10,7 @@
       <th>Quantity</th>
       <th>Unit_Price</th>
       <th>Total Price</th>
-      <th colspan="4"></th>
+      <th colspan="7"></th>
     </tr>
   </thead>
 
@@ -43,8 +43,8 @@
                 $('[data-toggle = "tooltip"]').tooltip();
               });
             </script>
-              <td><%= cart_item.unit_price %></td>
-              <td><%= cart_item.price %></td>
+              <td><%= cart_item.product.price %></td>
+              <td><%= cart_item.product.full_price %></td>
           </td>
             <td><%= link_to "Remove",  remove_cart_path(cart_item.product.id), data: {method: :delete, remote: true}  %>
             </td> 
@@ -58,6 +58,10 @@
     <div class="float-right p-2 mb-2 bg-success text-white " style="margin-right: 3%" >
       Total Price: <%= current_cart.sub_total %>
     </div>
+     <div class="float-right p-2 mb-2 bg-success text-white " style="margin-right: 3%" >
+
+     # Your total saving for this order is: <%= current_cart.discount_price%>
+    </div> 
     <div class="float-right p-2 mb-2 bg-success text-white " style="margin-right: 5%" >
       Total Quantity: <%= current_cart.quantity %>&nbsp;&nbsp;
     </div>

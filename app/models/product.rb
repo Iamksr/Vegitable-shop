@@ -1,10 +1,17 @@
 class Product < ApplicationRecord
+  belongs_to :user
 	 belongs_to :category
 	  # validates_presence_of :title
+        has_many :rating_reviews, dependent: :destroy
+        has_many :users, through: :rating_reviews, dependent: :destroy
+  # belongs_to :order, optional: true
+  # has_many :orders
+        has_many :order_items, dependent: :destroy
+        has_many :cart_items
       mount_uploader :image, ImageUploader
       extend FriendlyId
       friendly_id :name, use: :slugged
-
+    
 
 
 

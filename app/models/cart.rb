@@ -11,7 +11,12 @@ class Cart < ApplicationRecord
 	def quantity
 		cart_items.map(&:quantity).sum
 	end
-#  def add_cart_item(product_id)
+	
+	def discount_price
+		
+		cart_items.map(&:price).reject {|e| !e.present?}.sum - cart_items.map(&:unit_price).reject {|e| !e.present?}.sum 
+	end
+#def add_cart_item(product_id)
 #         cart_item = cart_items.where('product_id = ?', product_id).first
 #     if cart_item
 #         # increase the quantity of product in cart

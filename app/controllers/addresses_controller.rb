@@ -12,6 +12,7 @@ class AddressesController < ApplicationController
   def show
   end
 
+
   # GET /addresses/new
   def new
     @address = Address.new
@@ -36,7 +37,13 @@ class AddressesController < ApplicationController
       end
     end
   end
-
+# def country_select
+#     @states = CS.states(params[:country_code])
+#     respond_to do |format|
+#           format.js {  }
+#       end
+#   end
+  
   # PATCH/PUT /addresses/1
   # PATCH/PUT /addresses/1.json
   def update

@@ -1,7 +1,4 @@
 
-<!--Main Navigation-->
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,6 +21,24 @@
   </head>
 
   <body>
+     <%  if current_user.try(:role) == "admin" %>
+            <li class="nav-item">
+              <a class="nav-link <%= params[:controller] == "new" && params[:action] == "new" ? 'active' : '' %>" href="/products/new">New Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <%= params[:controller] == "all_product" && params[:action] == "all_product" ? 'active' : '' %>" href="/products_all">Products Listing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <%= params[:controller] == "index" && params[:action] == "index" ? 'active' : '' %>" href="/users">Users</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link <%= params[:controller] == "index" && params[:action] == "index" ? 'active' : '' %>" href="/categories">Category</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link <%#= params[:controller] == "order_delivery_report" && params[:action] == "order_delivery_report" ? 'active' : '' %>" href="/order_delivery_report">Delivery</a>
+            </li> -->
+          <% end %>
   <% if user_signed_in? %> 
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
   <div class="container">
@@ -31,6 +46,23 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+         <li class="nav-item">
+          <a class="nav-link" href="/products">Product</a>
+          <!-- -------------------------------------------------- -->
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Search product with category
+              </a>
+              
+              <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
+                  <% Category.all.each do |f|%>
+                    <a href="/category/<%= f.id %>" class="dropdown-item">
+                        <%= f.name %>
+                    </a>
+                  <% end %>
+              </div>
+
+            </li>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
@@ -43,23 +75,7 @@
              <%= text_field_tag :search, nil, :placeholder=>"search products" %>
              <%= submit_tag "Search", class: "btn btn-outline-danger"%></li>
              <%end %>
-        <li class="nav-item">
-          <a class="nav-link" href="/products">Product</a>
-          <!-- -------------------------------------------------- -->
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Search product with category
-              </a>
-              
-              <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
-                  <% Category.all.each do |f|%>
-                    <a href="/category/<%= f.id %>" class="dropdown-item">
-                        <%= f.name %><br>
-                    </a>
-                  <% end %>
-              </div>
-
-            </li>
+       
          <!-- --------------------------------------------------------- -->
 
           <li class="nav-item">

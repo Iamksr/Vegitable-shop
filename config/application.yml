@@ -6,7 +6,5 @@
 
 RAILS_SERVE_STATIC_FILES: true
 
-Publishable key:
-pk_test_0QHstTJ78CyjuXBhuZW1xWM700GEYiKcNd
-Secret key:
-sk_test_rIYEv5b6ZzXkMchVcNK5EGLu00I3sY2AVH
+PUBLISHABLE_KEY: pk_test_0QHstTJ78CyjuXBhuZW1xWM700GEYiKcNd
+SECRET_KEY: sk_test_rIYEv5b6ZzXkMchVcNK5EGLu00I3sY2AVH

@@ -1,29 +1,22 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Cart Items</h1>
+<div class="img-hover-zoom">
+  <img src="/path/to/image/" alt="This zooms-in really well and smooth">
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Cart</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
-      <tr>
-        <td><%= cart_item.product_id %></td>
-        <td><%= cart_item.cart_id %></td>
-        <td><%= link_to 'Show', cart_item %></td>
-        <td><%= link_to 'Edit', edit_cart_item_path(cart_item) %></td>
-        <td><%= link_to 'Destroy', cart_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<style type="text/css">
+.img-hover-zoom {
+  height: 300px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
 
-<br>
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
 
-<%= link_to 'New Cart Item', new_cart_item_path %>
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+</style>

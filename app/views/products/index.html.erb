@@ -9,7 +9,7 @@
        <% @products.each do |product| %>
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
-                <div class="product-image4">
+                <div class="img-hover-zoom">
                     <a href="#">
                       <%= image_tag(product.image_url, :size => "160x180") %>
                         
@@ -20,6 +20,7 @@
                         <!-- <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li> -->
                     </ul>
                     <span class="product-new-label">New</span>
+
                     <span class="product-discount-label"><%= product.discount_percentage.to_f.round(2) %>%</span>
                    <!--  (<%#= product.discount_percentage.to_f.round(2)%> -->
                 </div>
@@ -71,6 +72,22 @@
 .product-grid4 .add-to-cart:hover{background-color:#505050;box-shadow:0 0 10px rgba(0,0,0,.5)}
 @media only screen and (max-width:990px){.product-grid4{margin-bottom:30px}
 }
+/* [1] The container */
+.img-hover-zoom {
+  height: 300px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+</style>
 
 </style>
 
