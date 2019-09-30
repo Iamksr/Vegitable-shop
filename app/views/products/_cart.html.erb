@@ -1,5 +1,15 @@
 <br>
+<% if current_cart.cart_items.first.nil?%>
+<center>
+<img src="http://www.parinfurniture.com/assets/images/empty-cart_ee6141.png" style="height:277px;width:277px;">
+<h1>Your Cart is empty!</h1>
+<span>Add items to it Now!</span><br>
+  <div class="btn-group">
+        <%= link_to 'Shop Now',  products_path, :class => "btn btn-danger" %>
+      </div>
+</center>
 
+<% else %>
 <table class=" myTable table table-hover">
   <thead>
     <tr>
@@ -53,7 +63,9 @@
       <% end %>
     <% end %>
   </tbody>
-</table><br>
+</table>
+
+<br>
 
     <div class="float-right p-2 mb-2 bg-success text-white " style="margin-right: 3%" >
       Total Price: <%= current_cart.sub_total %>
@@ -70,10 +82,10 @@
     <div class="text-center ">
       <div class="btn-group">
         <%#= button_to 'Place Order', order_path(count: @products.count, product_id: @products.ids), :class => "btn btn-info" %>
-        <%= button_to 'Place Order',  charges_new_path, :class => "btn btn-danger" %>
+        <%= link_to 'Place Order',   charges_new_path, :class => "btn btn-danger" %>
       </div>
     </div>
-
+<% end %>
 
 
 

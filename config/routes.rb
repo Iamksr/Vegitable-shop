@@ -22,10 +22,9 @@ Rails.application.routes.draw do
   post '/add_to_cart/:product_id' => 'carts#add_to_cart', :as => 'add_to_cart'
   
   #=========== Charges ==============
-  post 'charges/new' => "charges#new"
   get 'charges/new' => "charges#new"
 
-  get 'charges/create' => 'charges#create'
+  post 'charges/create' => 'charges#create'
    # resources :carts
    # resources :products
    # resources :cart_items

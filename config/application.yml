@@ -1,10 +1,4 @@
-# STRIPE_SK:  pk_test_WOuxu6ZZPDsPH6NEpxUYKagu00nMNIXrtl
-# STRIPE_CLIENT_ID: sk_test_AULa1uC5wSoUXCfjIexEsTc400FA8BSNpZ
-
-# publishable_key: pk_test_WOuxu6ZZPDsPH6NEpxUYKagu00nMNIXrtl
-# secret_key:      sk_test_mjoMHspX73ijf6dnIT4n7j7J00gcIp1dtK
-
-RAILS_SERVE_STATIC_FILES: true
-
 PUBLISHABLE_KEY: pk_test_0QHstTJ78CyjuXBhuZW1xWM700GEYiKcNd
 SECRET_KEY: sk_test_rIYEv5b6ZzXkMchVcNK5EGLu00I3sY2AVH
+
+RAILS_SERVE_STATIC_FILES: true

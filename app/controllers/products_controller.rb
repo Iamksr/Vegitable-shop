@@ -23,8 +23,19 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
      # @product = Product.find(params[:id])
-    @product = Product.friendly.find(params[:id])
+    # @product = Product.friendly.find(params[:id])
+     @product = Product.friendly.find(params[:id])
+    cart_ids = @product.cart_items.joins(:cart).where(carts:{is_done:true}).map(&:cart_id)
+    # @orders = Order.where(cart_id: cart_ids)
+    @reviews = @product.rating_reviews.to_a
+    @avg_rating = if @reviews.blank?
+      0
+    else
+      @product.rating_reviews.average(:rating).round(2)
+    end
+
   end
+  
   def add_wishlist
     @product = Product.friendly.find(params[:product_id])
     if user_signed_in?

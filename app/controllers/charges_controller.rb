@@ -3,15 +3,11 @@ class ChargesController < ApplicationController
 	end
 
   def create
-
-    # Amount in cents
-    # byebug
-    # @amount = 500
-    @amount = current_cart.sub_total
-
+    @amount = current_cart.sub_total.to_i
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
       source: params[:stripeToken],
+
     })
 
     charge = Stripe::Charge.create({
@@ -22,13 +18,14 @@ class ChargesController < ApplicationController
       currency: 'usd',
     })
 
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to orders_history_path 
+
+  # rescue Stripe::CardError => e
+  #   flash[:error] = e.message
+  #   redirect_to root_path
 
   end
 
   def show
-    
   end
-  end
+
+end
