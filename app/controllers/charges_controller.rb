@@ -18,10 +18,9 @@ class ChargesController < ApplicationController
       currency: 'usd',
     })
 
-
-  # rescue Stripe::CardError => e
-  #   flash[:error] = e.message
-  #   redirect_to root_path
+   rescue Stripe::CardError => e
+   flash[:error] = e.message
+     redirect_to new_charges_path
 
   end
 

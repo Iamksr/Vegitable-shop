@@ -1,6 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <br><br><br>
 <div class="container">
@@ -36,8 +41,33 @@
             </div>
         </div>
         <% end %>
-    </div>
+    </div><br>
+     <center class="digg_pagination">
+ <%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
+  </center>
 </div>
+
+<!-- <div class="container">
+  <div class="row">
+    <center>
+    <ul class="pagination-custom text-center">
+          <li class="pag-link"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+          <%#= will_paginate @products , class: "pag-link" %> 
+          <li class="pag-link"><a href="#">1</a></li>
+          <li class="pag-link"><a href="#">2</a></li>
+          <li class="pag-link current">class="pag-link"<span>3</span></li>
+          <li class="pag-link"><a href="#">4</a></li>
+          <li class="pag-link"><a href="#">5</a></li>
+          <li class="pag-link"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+        </ul></center>
+  </div>
+</div> -->
+
+
+
+<!--   <%= will_paginate @products %> -->
+
+<br>
 <style type="text/css">
   product-grid4,.product-grid4 .product-image4{position:relative}
 .product-grid4{font-family:Poppins,sans-serif;text-align:center;border-radius:5px;overflow:hidden;z-index:1;transition:all .3s ease 0s}
@@ -92,6 +122,58 @@
 
 </style>
 
+<style type="text/css">
+  .pag-link {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px;
+}
+.pag-link.disabled > span,
+.pag-link.current > span,
+.pag-link > a{
+    display: block;
+    border-radius: 30%;
+    font-size: 16px;
+    line-height: 1.42857;
+    margin-right: 5px;
+    padding: 10px 17px;
+    position: relative;
+    text-decoration: none;
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.pag-link:active > a,
+.pag-link:hover > a,
+.pag-link:focus > a,
+.pag-link.current > span{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+.pag-link > a{
+    background-color: #7f4189;
+    color: #fff;
+    cursor: pointer;
+}
+.pag-link.disabled > span,
+.pag-link.current > span{
+    background-color: #13b3bc;
+    color: #fff;
+    cursor: inherit;
+}
+.pag-link:active > a,
+.pag-link:hover > a,
+.pag-link:focus > a {
+    background-color: #ec217c !important;
+    border-color: #ec217c;
+    color: #fff;
+}
+
+</style>
 <!-- <script type="text/javascript">
   /* Demo purposes only */
 $(".hover").mouseleave(

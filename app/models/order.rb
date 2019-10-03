@@ -1,5 +1,4 @@
-class Order < ApplicationRecord
-end
+
 class Order < ApplicationRecord
 	belongs_to :user, optional: true
 	belongs_to :cart, optional: true

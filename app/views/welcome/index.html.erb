@@ -36,6 +36,9 @@
         <% end %>
     </div>
 </div>
+ <center class="digg_pagination">
+ <%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
+  </center>
 <style type="text/css">
   product-grid4,.product-grid4 .product-image4{position:relative}
 .product-grid4{font-family:Poppins,sans-serif;text-align:center;border-radius:5px;overflow:hidden;z-index:1;transition:all .3s ease 0s}

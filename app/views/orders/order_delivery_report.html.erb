@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
-<h4 class="order_header text-center">Orders History</h4>
- <%#= link_to  'Create PDF',  order_pdf_path(format: :pdf), class: "btn btn-info btn-sm float-right", data: {toggle: "tooltip", title: "View PDF Agreement"}%><br><br>
-<table class="table table-hover">
+<h4 class="order_header text-center">Order Delivery Report</h4><br>
+<table class="table table-hover" id="cartpdf">
   <thead>
     <tr>
       <th>Product Name</th>
@@ -11,16 +10,17 @@
       <th>Price</th>
       <th>Total</th>
       <th>Image</th>
-     <!--  <th>Order Rating</th -->
+      <th>Delivery Status</th>
     </tr>
   </thead>
 
   <tbody>
-    <% if current_user.orders.present? %>
-    <% @orders.each do |order| %>
+    <%# if current_user.orders.present? %>
+    <% @delivery_report.each do |order| %>
         <tr>
-          <th>ORDER ID</th>
-          <th><%= order.id %></th>
+          <th>ORDER ID: <small><%= order.id %></small> Name: <i>(<%= order.user.name %><i>)</th>
+          <th></th>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -34,7 +34,7 @@
         <% if product.present? %> 
         <tr>
           <td><%= product.name rescue nil %></td>
-          <td><%= order.created_at %></td>
+          <td><%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td>
             <% address_id = order.address_id %>
             <% @add = Address.find_by(id: address_id)%>
           <% if @add.present? %>
@@ -44,11 +44,11 @@
           <td><%= product.price  || 0.0  rescue nil %></td>
           <td><%= item.quantity * product.price  || 0.0 rescue nil  %></td>
           <td><%= image_tag product.image.url(:thumb) rescue nil %></td> 
-          <% if item.product.present? %>
-          <td>
-            <!-- <div class="btn btn-warning"><a href="/order_review/<%= product.id %>">Review</a></div> -->
-          </td>
-          <% end %>
+          <%# if item.product.present? %>
+         <!--  <td>
+            <div class="btn btn-warning"><a href="/order_review/<%= product.id %>">Review</a></div>
+          </td> -->
+          <%# end %>
         </tr>
         <% end %>
       <% end %>
@@ -59,42 +59,22 @@
           <th><div class="p-2 mb-2 bg-success text-white float-left" style="margin-left: 10%" ><%= order.cart.quantity %></div></th>
           <th></th>
           <th><div class="p-2 mb-2 bg-success text-white  float-left" style="margin-left: 10%" ><%= order.total %></div></th>
-          <!-- <th><%#= link_to  'Create PDF',  order_pdf_path(order, format: :pdf), class: "btn btn-success btn-sm", data: {toggle: "tooltip", title: "View PDF Agreement"}%> -->
-          </th>
+          <th></th>
+          <th></th>
         </tr>
     <% end %>
-    <% end %>
+    <%# end %>
   </tbody>
 </table><br><br>
   
-<!-- <script type="text/javascript">
+<script type="text/javascript">
   $('#cartpdf').DataTable({
     dom: 'Bfrtip',
     buttons: [
         'copy', 'excel', 'pdf', 'csv'
     ]
   });
-</script> -->
-
-<!-- <script type="text/javascript">
-  $(document).ready(function() {
-  $('#example').DataTable({
-    dom: 'Bfrtip',
-    buttons: [{
-      extend: 'pdf',
-      title: 'Customized PDF Title',
-      filename: 'customized_pdf_file_name'
-    }, {
-      extend: 'excel',
-      title: 'Customized EXCEL Title',
-      filename: 'customized_excel_file_name'
-    }, {
-      extend: 'csv',
-      filename: 'customized_csv_file_name'
-    }]
-  });
-});
-</script> -->
+</script>
 
 <script type="text/javascript" src= "http://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css"></script>
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>

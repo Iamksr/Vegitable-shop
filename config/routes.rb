@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :rating_reviews
+  # resources :rating_reviews
   resources :addresses
   resources :cart_items
   resources :carts
-
+  resources :charges
   resources :categories
-  resources :orders
+  # resources :orders
   resources :products do
   	 get "/cart" => "products#add_to_cart"
      get "/wishlist", action: :add_wishlist, as: :add_wishlist
@@ -28,6 +28,24 @@ Rails.application.routes.draw do
    # resources :carts
    # resources :products
    # resources :cart_items
+  get 'user_profile' => "orders#user_profile" 
+  #  ===========  Order Details  =============
+  post 'orders' => "orders#all_order_show"
+  get 'orders_history' => "orders#index"
+
+  # resources :orders do
+  #   member do
+  #     get 'order_pdf'
+  #   end
+  # end 
+# get 'products_all' => "products#all_product"
+get '/product/:id' => "products#show"
+  #  get 'order_pdf' => 'orders#order_pdf'
+  # # =========  Order Review  ===================
+  # get 'order_review/:id' => 'orders#order_review'
+
+
+
  
    root :to => 'products#show'
     get "/update_cart_item_quantity/:type/:cart_item_id" => "carts#update_cart_item_quantity", as: :update_cart_item_quantity

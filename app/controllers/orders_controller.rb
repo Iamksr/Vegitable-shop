@@ -3,10 +3,10 @@ class OrdersController < ApplicationController
 		def user_profile
 		end
 
-		def order_delivery_report
-			# @orders = Order.unscoped.where(user_id: current_user.id)
-			@delivery_report = Order.all
-		end
+		# def order_delivery_report
+		# 	# @orders = Order.unscoped.where(user_id: current_user.id)
+		# 	@delivery_report = Order.all
+		# end
 
 		# def order_review
 		# 	# byebug
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 		def new
 		end
 
-		def all_order_show
+			def all_order_show
 			@amount = current_cart.sub_total.to_i
 	    customer = Stripe::Customer.create({
 	      email: params[:stripeEmail],
@@ -35,15 +35,23 @@ class OrdersController < ApplicationController
 	      amount: @amount,
 	      description: 'Rails Stripe customer',
 	      currency: 'usd',
-	    })
+	    }) 
 			# rescue Stripe::CardError => e
     	# 	flash[:error] = e.message
+
 			@user = current_user
-			@order = Order.create!(user_id: @user.id, address_id:  params[:address_id], cart_id: current_cart.id, total: current_cart.sub_total, stripe_token: params[:stripeToken], stripe_token_type: params[:stripeTokenType], stripe_email: params[:stripeEmail])
-			current_cart.update(is_done: true)
+
+			@order = Order.create!(user_id: @user.id, address_id: 
+			 params[:address_id], cart_id: current_cart.id, 
+			    total: current_cart.sub_total) 
+			    # stripe_token: params[:stripeToken], 
+				# stripe_token_type: params[:stripeTokenType], 
+				# stripe_email: params[:stripeEmail])
+			    current_cart.update(is_done: true)
 			# if @order.save!
-					UserMailer.welcome_email(@user).deliver
+					# UserMailer.welcome_email(@user).deliver
 					# redirect_to fallback_location: orders_history_path, notice: "Order completed successfully"
+					# byebug
 					redirect_to orders_history_path
 					flash[:notice] = "Order successfully completed"
 					
