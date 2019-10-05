@@ -4,19 +4,25 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    # byebug
-    if params[:search].present?
-      # byebug
-      @products = Product.where("lower(name) LIKE :prefix", prefix: "%#{params[:search].downcase}%").paginate(page: params[:page], per_page: 4)
-    elsif params[:category_id].present?
-      @category = Category.find(params[:category_id])
-      @products = @cat.products.paginate(page: params[:page], per_page: 4)
+    if params[:id].present?
+          @category = Category.find(params[:category_id])
+          @products = @cat.products.paginate(page: params[:page], per_page: 4)
+    elsif 
+      if params[:search].present?
+          @products = Product.where("lower(name) LIKE :prefix", prefix: "%#{params[:search].downcase}%").paginate(page: params[:page], per_page: 4)
+      end
     else
       @products = Product.all.paginate(page: params[:page], per_page: 4)
-      # @products = Product.all.where("start_date <=?  AND end_date >= ?",Date.today,Date.today)
     end
-    # @products = Product.all
-     @categories = Category.all
+    # elsif params[:category_id].present?
+      
+    #   @products = @cat.products.paginate(page: params[:page], per_page: 4)
+    # else
+    #   @products = Product.all.paginate(page: params[:page], per_page: 4)
+    #   # @products = Product.all.where("start_date <=?  AND end_date >= ?",Date.today,Date.today)
+    # end
+    # # @products = Product.all
+    #  @categories = Category.all
   end
 
   # GET /products/1
@@ -26,13 +32,13 @@ class ProductsController < ApplicationController
     # @product = Product.friendly.find(params[:id])
      @product = Product.friendly.find(params[:id])
     cart_ids = @product.cart_items.joins(:cart).where(carts:{is_done:true}).map(&:cart_id)
-    # @orders = Order.where(cart_id: cart_ids)
-    # @reviews = @product.rating_reviews.to_a
-    # @avg_rating = if @reviews.blank?
-    #   0
-    # else
-    #   @product.rating_reviews.average(:rating).round(2)
-    # end
+     @orders = Order.where(cart_id: cart_ids)
+     @reviews = @product.rating_reviews.to_a
+    @avg_rating = if @reviews.blank?
+       0
+     else
+       @product.rating_reviews.average(:rating).round(2)
+     end
 
   end
   # def all_product

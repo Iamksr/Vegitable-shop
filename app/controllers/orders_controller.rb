@@ -8,19 +8,40 @@ class OrdersController < ApplicationController
 		# 	@delivery_report = Order.all
 		# end
 
-		# def order_review
-		# 	# byebug
-		# 	# @cart_item = CartItem.find(params[:id])
-		# 	@product = Product.unscoped.find(params[:id])
-		# 	@reviews = @product.rating_reviews.to_a
-  #   	@avg_rating = if @reviews.blank?
-  #     	0
-  #   	else
-  #  	 	@product.rating_reviews.average(:rating).round(2) rescue nil
-  #   	end
-		# end
+		 # def order_review
 		
- 				
+		 # 	 @cart_item = CartItem.find(params[:id])
+		 # 	@product = Product.unscoped.find(params[:id])
+		 # 	@reviews = @product.rating_reviews.to_a
+   #   	     @avg_rating = if @reviews.blank?
+   #       	0
+   #  	   else
+   # 	 	    @product.rating_reviews.average(:rating).round(2) rescue nil
+   #   	 end
+		 # end
+		
+ 		def order_review
+			@product = Product.unscoped.find(params[:id])
+			@reviews = @product.rating_reviews.to_a
+    	@avg_rating = if @reviews.blank?
+      	0
+    	else
+   	 	@product.rating_reviews.average(:rating).round(2) rescue nil
+    	end
+		end	
+		 def order_pdf
+			@orders = current_user.orders
+			respond_to do |format|
+			 format.html
+			 format.pdf do
+			 render pdf: "order_pdf",     # Excluding ".pdf" extension.
+			   show_as_html: params.key?("debug"),  # allow debugging based on url param
+			disable_smart_shrinking: true,
+			 zoom: 0.75
+			 	end
+			  end
+		end
+
 		def new
 		end
 

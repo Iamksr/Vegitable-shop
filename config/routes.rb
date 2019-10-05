@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   # resources :rating_reviews
+  devise_for :users
   resources :addresses
   resources :cart_items
   resources :carts
   resources :charges
   resources :categories
+  resources :rating_reviews
+
+  root 'products#index'
   # resources :orders
   resources :products do
   	 get "/cart" => "products#add_to_cart"
@@ -14,9 +18,11 @@ Rails.application.routes.draw do
   get '/cart' => "products#cart"
   get 'welcome/index'
 
-  devise_for :users
-  root 'welcome#index'
-  resources :users
+ namespace :admin, module: nil  do
+    root "admin#index"
+    resources :users
+  end
+    post '/admin/users/:id/edit' => "users#edit"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  get '/wishlist' => "products#wishlist"
   post '/add_to_cart/:product_id' => 'carts#add_to_cart', :as => 'add_to_cart'
@@ -28,10 +34,11 @@ Rails.application.routes.draw do
    # resources :carts
    # resources :products
    # resources :cart_items
+   # ===========    User Profile =============
   get 'user_profile' => "orders#user_profile" 
   #  ===========  Order Details  =============
   post 'orders' => "orders#all_order_show"
-  get 'orders_history' => "orders#index"
+  get 'orders' => "orders#index"
 
   # resources :orders do
   #   member do
@@ -40,9 +47,9 @@ Rails.application.routes.draw do
   # end 
 # get 'products_all' => "products#all_product"
 get '/product/:id' => "products#show"
-  #  get 'order_pdf' => 'orders#order_pdf'
+   get 'order_pdf' => 'orders#order_pdf'
   # # =========  Order Review  ===================
-  # get 'order_review/:id' => 'orders#order_review'
+   get 'order_review/:id' => 'orders#order_review'
 
 
 

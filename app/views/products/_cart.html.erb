@@ -56,7 +56,10 @@
               <td><%= cart_item.product.price %></td>
               <td><%= cart_item.product.full_price %></td>
           </td>
-            <td><%= link_to "Remove",  remove_cart_path(cart_item.product.id), data: {method: :delete, remote: true}  %>
+          <%#byebug%>
+            <td><%= link_to "Remove",  remove_cart_path(cart_item.product.id), data: {method: :delete, remote: true},class: "btn btn--red btn--stroked btn--stroke--2 px24 py12 txt-s round-full px37"
+
+                %>
             </td> 
         </div>
         </tr>

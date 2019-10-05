@@ -1,123 +1,121 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    <!-- Full Page Image Header with Vertically Centered Content -->
-<header class="masthead">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-12 text-center">
-        <h1 class="font-weight-light"></h1>
-        <p class="lead"></p>
-      </div>
-    </div>
-  </div>
-</header>
-    <title>ECommerceApp</title>
+    <title>ECommerce</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
   </head>
+  <body>
 
- 
-  <% if user_signed_in? %> 
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-  <div class="container">
-
-    <a class="navbar-brand" href="#">AiDEN-commerce</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-         <li class="nav-item">
-          <a class="nav-link" href="/products">Product</a>
-
-          <!-- -------------------------------------------------- -->
-          <li class="nav-item dropdown">
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color navbar-color"  style="background-color: darkcyan;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <%  if current_user.try(:role) == "admin" %>
+            <li class="nav-item">
+              <a class="nav-link" href="/products/new">New Product</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/products_all">Products Listing</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/users">Users</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/categories">Category</a>
+            </li>
+            <!--  <li class="nav-item">
+              <a class="nav-link" href="/order_delivery_report">Report</a>
+            </li> -->
+          <% end %>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Search product with category
+                aria-haspopup="true" aria-expanded="false", style="cursor: pointer;">Search product with category
               </a>
               
-              <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
+              <div class="dropdown-menu dropdown-default" 
+                    aria-labelledby="navbarDropdownMenuLink-333">
                   <% Category.all.each do |f|%>
-                    <a href="/category/<%= f.id %>" class="dropdown-item">
-                        <%= f.name %>
+                    <a href="/category/<%= f.id %>/products" class="dropdown-item" >
+                        <%= f.name %><br>
                     </a>
                   <% end %>
               </div>
-
             </li>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-        <li class="nav-item">
-             <%= form_tag "/products", :method=>"get" do %>
-             <%= text_field_tag :search, nil, :placeholder=>"search products" %>
-             <%= submit_tag "Search", class: "btn btn-outline-danger"%></li>
-             <%end %>
-       
-         <!-- --------------------------------------------------------- -->
+            
+        </ul>
 
+        <!-- Search Bar -->
+        <div class="col-sm-4 col-md-4 pull-right">
+          <%= form_tag "/products", :method=>"get" do %>
+            <div class="input-group">
+              <%= text_field_tag :search, nil, :placeholder=>"Search for products", class: 'form-control' %>
+              <button class="btn btn-default input-group-btn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          <% end %>
+        </div>
+        <!--  -->
+        <ul class="navbar-nav ml-auto nav-flex-icons">
           <li class="nav-item">
-            <a class="nav-link" href="/cart">
-              <li class="nav item">Carts</li>
-              <%  @cart = Cart.where(is_done: false).first %>
+            <a class="nav-link" href="/wishlist"><i class="fa fa-heart">  </i><span>
+                <% if current_user.present? %><%= current_user.wishlists.count rescue nil %></span>
+                <% end %>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" href="/cart">
+              <i class="glyphicon glyphicon-shopping-cart"></i>
+              <% cart = Cart.where(is_done: false).first %>
                 <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
                 <% end %>
             </a>
           </li>
-          <li class="nav-item">
-      <a class="nav-link" href="/products/new">New Product</a>
-    </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/wishlist">
-              <li class="nav item">WishLists</li>
-                <% if current_user.present? %><%= current_user.wishlists.count rescue nil %>
-                <% end %>
-            </a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/sign_out">Log Out</a>
-        
-           <!-- <li><em>Current User: <%= current_user.email%></em></li> -->
-        </li>
-        </li>
-      </ul>
+          
+          <!-- User Authentication -->
+            <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="fas fa-user"> <%= current_user.name %></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                 <!--  <a class="dropdown-item" href="#"> <%= link_to 'Order History',  orders_history_path%></a> -->
+                  <a class="dropdown-item" href="#"> <%= link_to 'Profile',  user_profile_path%></a>
+                  <a class="dropdown-item" href="#"><%= link_to "Logout", destroy_user_session_path, method: :delete %></a>
+              <!--     <%# else %>
+                  <div class="dropdown-divider"></div>
+                  <li><a class="dropdown-item" href="#"><%= link_to "Sign up", new_user_registration_path %></a></li>&nbsp;&nbsp;&nbsp;
+                  <li><a class="dropdown-item" href="#"><%= link_to "Login", new_user_session_path %></a></li> -->
+                </div>
+              </li>
+            <% end %>
+          <!--  -->
+          
+        </ul>
+      </div>
+    </nav>
+<!--/.Navbar -->
+    <%= yield %>
+  </body>
+</html>
 
-    </div>
-  </div>
-</nav>
-<% end%>
-<!-- Full Page Image Header with Vertically Centered Content -->
 
-      
-        
-  <title>Pgfh</title>
-        <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-        <% end %>
-       <% if alert %>
-           <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
-     <%= yield %>
-     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!-- Footer -->
 <style type="text/css">
-  <style type="text/css">
   .navbar-color
 {
   background-color: darkcyan;
 }
-</style>
 
 </style>
-  </body>
-</html>
