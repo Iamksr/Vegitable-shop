@@ -215,6 +215,7 @@ GEM
     will_paginate (3.1.8)
     will_paginate-bootstrap4 (0.2.2)
       will_paginate (~> 3.0, >= 3.0.0)
+    wkhtmltopdf-binary (0.12.4)
 
 PLATFORMS
   ruby
@@ -246,6 +247,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   wicked_pdf
   will_paginate-bootstrap4
+  wkhtmltopdf-binary
 
 BUNDLED WITH
    2.0.2

@@ -1,3 +1,9 @@
+ 
+<!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> --> 
+<!------ Include the above in your HEAD tag ---------->
+
 <%= form_for(address) do |f| %>
   <% if address.errors.any? %>
     <div id="error_explanation">
@@ -10,36 +16,68 @@
       </ul>
     </div>
   <% end %>
-
    <div class="field">
     <%#= f.label :user_id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field col-lg-12">
-    <%= f.label :country %>
-    <%= f.text_field :country, class: "form-control" %>
-  </div>
+<div class="container">
+  <div class="row">
+     <form class="form-horizontal">
+            <fieldset>
+               
+         
+                <!-- full-name input-->
+                <div class="control-group">
+                    <label class="control-label">Country</label>
+                    <div class="controls">
+                         <%= f.text_field :country,class: "form-control" %>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <!-- state input-->
+                <div class="control-group">
+                    <label class="control-label">State</label>
+                    <div class="controls">
+                      <%= f.text_field :state, class: "form-control" %>
+                        
+                        <p class="help-block">Street address, P.O. box, company name, c/o</p>
+                    </div>
+                </div>
+                <!-- address-line2 input-->
+                <div class="control-group">
+                    <label class="control-label"> Address</label>
+                    <div class="controls">
+                        <%= f.text_field :address,class: "form-control"%>
+                        <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                    </div>
+                </div>
+                <!-- city input-->
+                <div class="control-group">
+                    <label class="control-label">City / Town</label>
+                    <div class="controls">
+                         <%= f.text_field :district, class: "form-control"%>
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <!-- postal-code input-->
+                <div class="control-group">
+                    <label class="control-label">Zip / Postal Code</label>
+                    <div class="controls">
+                        <%= f.text_field :post_code,class: "form-control"%>
+                       
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                  <div class="actions">
+                   <%= f.submit %>
+                  </div>
+                   <% end %>
 
-  <div class="field col-lg-12">
-    <%= f.label :post_code %>
-    <%= f.text_field :post_code, class: "form-control" %>
-  </div>
 
-  <div class="field col-lg-12">
-    <%= f.label :state %>
-    <%= f.text_field :state, class: "form-control" %>
-  </div>
- <div class="field col-lg-12">
-  <%= f.label :address %>
-    <%= f.text_field :address, class: "form-control"%>
- </div>
-  <div class="field col-lg-12">
-    <%= f.label :district %>
-    <%= f.text_field :district, class: "form-control"  %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+                  <!-- css -->
+                  <style type="text/css">
+                    body{
+                    background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
+                  }
+                  </style>

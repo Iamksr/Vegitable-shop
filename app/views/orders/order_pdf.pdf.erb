@@ -36,17 +36,17 @@
               product = Product.unscoped.find(product_id) %> 
             <% if product.present? %> 
             <tr>
-              <td><%= product.name rescue nil %></td>
+              <td><%= product.name %></td>
               <!-- <td><#%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td> -->
                 <% address_id = order.address_id %>
                 <% @add = Address.find_by(id: address_id)%>
               <% if @add.present? %>
                 <td><%= @add.address %>, <%= @add.country%>, <%= @add. post_code%>, <%= @add. district%> </td>
               <% end %>
-              <td><%= item.quantity rescue nil %></td>
-              <td><%= product.price  || 0.0  rescue nil %></td>
-              <td><%= item.quantity * product.price  || 0.0 rescue nil  %></td>
-              <td><%= image_tag product.image.url(:thumb) rescue nil %></td> 
+              <td><%= item.quantity %></td>
+              <td><%= product.price  %></td>
+              <td><%= item.quantity * product.price %></td>
+             <!--  <td><%#= image_tag product.image.url(:thumb) rescue nil %></td>  -->
               <% if item.product.present? %>
               <td>
                 <div class="btn btn-warning"><a href="/order_review/<%= product.id %>">Review</a></div>

@@ -17,14 +17,16 @@
        <% current_user.addresses.each do |add| %>
             <label class="radio"><input type="radio" name="address_id"  value= "<%= add.id %>"><%= add.full_address %></label><br><br>
         <% end %>
+        <center>
   <article>
     <% if flash[:error].present? %>
       <div id="error_explanation">
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
+
     <label class="amount">
-      <span><%= current_cart.sub_total%></span>
+      <span>Total Amount:<%= current_cart.sub_total%></span>
     </label>
   </article>
   <br>
@@ -32,6 +34,7 @@
     <input 
           type="submit" disabled="disabled" class="disabled"
           value="Pay with Card"
+          color="blue"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="A month's subscription"
           data-amount="<%= current_cart.sub_total * 100%>"
@@ -66,3 +69,31 @@
   });
 </script>
 <% end %>
+<style type="text/css">
+  body{
+  background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.btn {
+  /*flex: 1 1 auto;*/
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 50% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 4px;
+ }
+</style>
