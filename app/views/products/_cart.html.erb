@@ -53,8 +53,8 @@
                 $('[data-toggle = "tooltip"]').tooltip();
               });
             </script>
-              <td><%= cart_item.product.price %></td>
-              <td><%= cart_item.product.full_price %></td>
+              <td><%= cart_item.unit_price %></td>
+              <td><%= cart_item.price %></td>
           </td>
           <%#byebug%>
             <td><%= link_to "Remove",  remove_cart_path(cart_item.product.id), data: {method: :delete, remote: true},class: "btn btn--red btn--stroked btn--stroke--2 px24 py12 txt-s round-full px37"
