@@ -91,9 +91,12 @@
                   <span class="fas fa-user"> <%= current_user.name %></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="#"> <%= link_to 'Order History',  orders_history_path%></a>
-                  <!-- <a class="dropdown-item" href="#"> <%#= link_to 'Profile',  user_profile_path%></a> -->
-                  <a class="dropdown-item" href="#"><%= link_to "Logout", destroy_user_session_path, method: :delete %></a>
+                 
+                  <a class="dropdown-item" href="/cart"> Carts</a>
+                  <a class="dropdown-item" href="/orders">All Orders</a>
+                 <a class="dropdown-item" href="/user_profile">My Profile</a>
+                  <a class="dropdown-item" href="/users/sign_out">Sign Out</a>
+                 <!--  <a class="dropdown-item" href="#"><%#= link_to "Logout", destroy_user_session_path, method: :delete %></a> -->
                    <% else %>
                   <div class="dropdown-divider"></div>
                   <li><a class="dropdown-item" href="#"><%= link_to "Sign up", new_user_registration_path %></a></li>&nbsp;&nbsp;&nbsp;
@@ -114,5 +117,8 @@
 
 <style type="text/css">
   
-
+ .navbar-color
+{
+   background-image: linear-gradient(to right, #d62c24, #465877, #2199fff0);
+}
 </style>

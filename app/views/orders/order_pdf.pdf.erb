@@ -28,7 +28,7 @@
       <tbody>
         <% if current_user.orders.present? %>
         <% @orders.each do |order| %>
-            <tr  style="background-color: cadetblue;">
+            <tr>
               <th>ORDER ID: <%= order.id %> (<%= order.user.name %>)</th>
             </tr>
           <% order.cart.cart_items.each do |item| %>

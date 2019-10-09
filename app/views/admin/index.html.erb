@@ -1,13 +1,23 @@
+
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <br><br><br>
 <div class="container">
     <h3 class="h3">Your Shop </h3>
     <div class="row">
-       <% @category.products.each do |product| %>
+       <% @products_all.each do |product| %>
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
-                <div class="product-image4">
+                <div class="img-hover-zoom">
                     <a href="#">
                       <%= image_tag(product.image_url, :size => "160x180") %>
                         
@@ -18,9 +28,13 @@
                         <!-- <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li> -->
                     </ul>
                     <span class="product-new-label">New</span>
+
+                    <span class="product-discount-label"><%= product.discount_percentage.to_f.round(2) %>%</span>
+                   <!--  (<%#= product.discount_percentage.to_f.round(2)%> -->
                 </div>
+                
                 <div class="product-content">
-                     <h3 style="min-height: 100px !important;"><%= product.name %></h3>
+                     <h3 style="min-height: 70px !important;"><%= product.name %></h3>
                     <div class="price">
                       ₹<%= product.price%>
                    <s>₹<%=product.full_price %></s>  
@@ -30,8 +44,15 @@
             </div>
         </div>
         <% end %>
-    </div>
+    </div><br>
+     <center class="digg_pagination">
+ <%= will_paginate @products_all, list_classes: %w(pagination justify-content-end) %>
+  </center>
 </div>
+
+
+
+
 <style type="text/css">
   body{
   background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
@@ -70,15 +91,73 @@
 .product-grid4 .add-to-cart:hover{background-color:#505050;box-shadow:0 0 10px rgba(0,0,0,.5)}
 @media only screen and (max-width:990px){.product-grid4{margin-bottom:30px}
 }
+/* [1] The container */
+.img-hover-zoom {
+  height: 300px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+</style>
+
+
+<style type="text/css">
+  .pag-link {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px;
+}
+.pag-link.disabled > span,
+.pag-link.current > span,
+.pag-link > a{
+    display: block;
+    border-radius: 30%;
+    font-size: 16px;
+    line-height: 1.42857;
+    margin-right: 5px;
+    padding: 10px 17px;
+    position: relative;
+    text-decoration: none;
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.pag-link:active > a,
+.pag-link:hover > a,
+.pag-link:focus > a,
+.pag-link.current > span{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+.pag-link > a{
+    background-color: #7f4189;
+    color: #fff;
+    cursor: pointer;
+}
+.pag-link.disabled > span,
+.pag-link.current > span{
+    background-color: #13b3bc;
+    color: #fff;
+    cursor: inherit;
+}
+.pag-link:active > a,
+.pag-link:hover > a,
+.pag-link:focus > a {
+    background-color: #ec217c !important;
+    border-color: #ec217c;
+    color: #fff;
+}
 
 </style>
-</style>
-<script type="text/javascript">
-  /* Demo purposes only */
-$(".hover").mouseleave(
-  function () {
-    $(this).removeClass("hover");
-  }
-);
-</script>
-

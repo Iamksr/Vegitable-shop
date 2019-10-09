@@ -47,9 +47,9 @@
             <li class="nav-item">
               <a class="nav-link " href="/categories">Category</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link <%#= params[:controller] == "order_delivery_report" && params[:action] == "order_delivery_report" ? 'active' : '' %>" href="/order_delivery_report">Delivery</a>
-            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/order_delivery_report">Report</a>
+            </li>
            <% end %> 
             <!-- <li class="nav-item">
               <a class="nav-link" href="/orders_history">Order history</a>
@@ -99,13 +99,6 @@
                 <% end %>
             </a>
           </li>
-          <!-- li class="nav-item">
-              <a class="nav-link " href="/users/sign_in">Login</a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link " href="/users/sign_up">Sign up</a>
-            </li> -->
-          
           <!-- User Authentication -->
             <% if user_signed_in? %>
               <li class="nav-item dropdown">
@@ -113,14 +106,14 @@
                   <span class="fas fa-user"> <%= current_user.name %></span>
                 </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/carts">My Carts</a>
+                  <a class="dropdown-item" href="/cart">My Carts</a>
                   <a class="dropdown-item" href="/orders">My Orders</a>
-                  <!--  <a class="dropdown-item" href="#"> <%#= link_to 'My Profile',  user_profile_path%></a> -->
+                 <a class="dropdown-item" href="/user_profile">My Profile</a>
                   <a class="dropdown-item" href="/users/sign_out">Sign Out</a>
                  
 
                  <!-- <a class="dropdown-item" href="#"> <%#= link_to 'Profile',  userpath%></a> -->
-                  <a class="dropdown-item" href="#"><%= link_to "Logout", destroy_user_session_path, method: :delete %></a>
+                  <!-- <a class="dropdown-item" href="#"><%#= link_to "Logout", destroy_user_session_path, method: :delete %></a> -->
                   <% else %>
                   <div class="dropdown-divider"></div>
                   &nbsp;&nbsp;&nbsp;
@@ -142,7 +135,7 @@
 <style type="text/css">
   .navbar-color
 {
-   background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+   background-image: linear-gradient(to right, #17100f, #465877, #2199fff0);
 }
 .btn:hover {
   background-position: right center; /* change the direction of the change here */

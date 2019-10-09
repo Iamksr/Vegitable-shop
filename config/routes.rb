@@ -51,7 +51,8 @@ get '/product/:id' => "products#show"
   # # =========  Order Review  ===================
    get 'order_review/:id' => 'orders#order_review'
 
-
+  # ============ Oder delivery report ===========
+  get 'order_delivery_report' => 'orders#order_delivery_report'
 
  
    root :to => 'products#show'

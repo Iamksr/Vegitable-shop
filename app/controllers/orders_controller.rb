@@ -3,22 +3,22 @@ class OrdersController < ApplicationController
 		def user_profile
 		end
 
-		# def order_delivery_report
-		# 	# @orders = Order.unscoped.where(user_id: current_user.id)
-		# 	@delivery_report = Order.all
-		# end
+		 def order_delivery_report
+		 #@orders = Order.unscoped.where(user_id: current_user.id)
+			@delivery_report = Order.all
+		end
 
-		 # def order_review
+		  def order_review
 		
-		 # 	 @cart_item = CartItem.find(params[:id])
-		 # 	@product = Product.unscoped.find(params[:id])
-		 # 	@reviews = @product.rating_reviews.to_a
-   #   	     @avg_rating = if @reviews.blank?
-   #       	0
-   #  	   else
-   # 	 	    @product.rating_reviews.average(:rating).round(2) rescue nil
-   #   	 end
-		 # end
+		  @cart_item = CartItem.find(params[:id])
+		 	@product = Product.unscoped.find(params[:id])
+		 	@reviews = @product.rating_reviews.to_a
+    	     @avg_rating = if @reviews.blank?
+          	0
+     	   else
+    	 	    @product.rating_reviews.average(:rating).round(2) rescue nil
+      	 end
+		 end
 		
  		def order_review
 			@product = Product.unscoped.find(params[:id])
