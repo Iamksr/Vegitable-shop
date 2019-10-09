@@ -47,7 +47,7 @@
             
              <!--  <a href="/products/<%= @product.id %>/wishlist" data-tip="Add to Wishlist"><strong><i class="fa fa-shopping-cart"></strong></i></a></li> -->
               <br><br>
-                
+                <% if user_signed_in? %>
                 <% if current_user.role == "admin" %>
         <td><%= link_to 'Edit', edit_product_path(@product),class: "btn btn--green btn--strokes btn--stroke--2 px24 py12 txt-s round-full px37" %></td>
         <% end %>
@@ -55,7 +55,7 @@
                 <div class='star-rating' data-score="<%= review.rating %>"></div><br>
                 <%= review.review %>
                 <h6><%= review.user.name %></h6><hr>
-
+               <% end %>
               <% end %>
               <script type="text/javascript" src="app/assets/javascripts/jquery.raty.js"></script>
               <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>

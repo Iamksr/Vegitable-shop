@@ -5,10 +5,10 @@
 <% if flash[:alert] %>
   <div class="alert" id ="alert"><%= flash[:alert] %></div>
 <% end %>
+<% if user_signed_in? %>
 <br>
   <center><button type="button" class="btn btn-info text-white"><a href="/addresses/new">Add New      Address<i class="fa fa-home"></i></a>
   </button></center>
-  
   <% if current_user.addresses.present? %>
   <%= form_tag orders_path do |f| %>
    <noscript>You must <a href="http://www.enable-javascript.com" target="_blank">enable JavaScript</a> in your web browser in order to pay via Stripe.</noscript>
@@ -17,6 +17,7 @@
        <% current_user.addresses.each do |add| %>
             <label class="radio"><input type="radio" name="address_id"  value= "<%= add.id %>"><%= add.full_address %></label><br><br>
         <% end %>
+<%end %>
         <center>
   <article>
     <% if flash[:error].present? %>
