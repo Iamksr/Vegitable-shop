@@ -1,13 +1,13 @@
 class ChargesController < ApplicationController
 	def new
-    if if current_user.present?
+     if current_user.present?
        
-      # product_ids = current_user.cart_items.map(&:product_id)
-      # @products = Product.where(id: product_ids)
+  # #     # product_ids = current_user.cart_items.map(&:product_id)
+  # #     # @products = Product.where(id: product_ids)
     else
       redirect_to new_user_session_path
-  end
-end
+    end
+
 	end
 
   def create

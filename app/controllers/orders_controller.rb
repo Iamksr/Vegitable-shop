@@ -46,6 +46,7 @@ class OrdersController < ApplicationController
 		end
 
 			def all_order_show
+				if user_signed_in?
 			@amount = current_cart.sub_total.to_i
 	    customer = Stripe::Customer.create({
 	      email: params[:stripeEmail],
@@ -80,7 +81,7 @@ class OrdersController < ApplicationController
 				# render :new
 			# end
 		end
-
+       end
 		# def order_pdf
 		# 	@orders = current_user.orders
 		# 	respond_to do |format|

@@ -40,7 +40,7 @@
               <li>
                <h6>
                 <a class="btn btn--blue btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36" href="/products/<%= @product.id %>/cart" data-reactid="593">Add to Cart</a>
-                <a class="btn btn--red btn--stroked btn--stroke--2 px24 py12 txt-s round-full px37" href="/charges/new" data-reactid="593">Buy Now</a>
+                <a class="btn btn--red btn--stroked btn--stroke--2 px24 py12 txt-s round-full px37" href="/charges/new?product_id=<%= params[:id]%>" data-reactid="593">Buy Now</a>
 
                 </li>
       </div>
@@ -78,15 +78,9 @@
 <style type="text/css">
   /*# sourceMappingURL=style.css.map */
   body{
-  background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
+  background-image: linear-gradient(to right, #005D97);
 }
 
-
-/*( button style) */
-element.style {
-  background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
-}
-}
 }
 .btn.btn--stroke {
     background-color: orange;

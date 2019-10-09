@@ -5,7 +5,7 @@
 <% if flash[:alert] %>
   <div class="alert" id ="alert"><%= flash[:alert] %></div>
 <% end %>
-<% if user_signed_in? %>
+
 <br>
   <center><button type="button" class="btn btn-info text-white"><a href="/addresses/new">Add New      Address<i class="fa fa-home"></i></a>
   </button></center>
@@ -17,7 +17,7 @@
        <% current_user.addresses.each do |add| %>
             <label class="radio"><input type="radio" name="address_id"  value= "<%= add.id %>"><%= add.full_address %></label><br><br>
         <% end %>
-<%end %>
+    
         <center>
   <article>
     <% if flash[:error].present? %>
@@ -25,10 +25,15 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-
+    <% if params[:product_id].present? %>
     <label class="amount">
-      <span>Total Amount:<%= current_cart.sub_total%></span>
+      <span>Total Amount:<%= Product.where(slug: params[:product_id]).first.price %></span>
     </label>
+    <% else %>
+    <label class="amount">
+      <span>Total Amount:<%= current_cart.sub_total %></span>
+    </label>
+    <% end %>
   </article>
   <br>
 
