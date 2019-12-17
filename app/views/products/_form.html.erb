@@ -1,43 +1,137 @@
+
+
 <%= form_for(product) do |f| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class='row'>
+  <div class='order_form col-md-9'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <div class="panel panel-default">
+           <center> <div class="panel-heading"><strong>New Product</strong></div></center>
+          <div class="panel-body">
+            <div class="card">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Name</p>
+                  <ul class="selectors input-text">
+                    <li>
+                      <%= f.text_field :name, class: "form-control" %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Price</p>
+                  <ul class="selectors input-text">
+                    <li>
+                      <%= f.text_field :price, class: "form-control", min: 0 %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Full Price</p>
+                  <ul class="selectors input-text">
+                    <li>
+                      <%= f.text_field :full_price, class: "form-control", min: 0 %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Description</p>
+                  <ul class="selectors input-text">
+                    <li>
+                      <%= f.text_area :description, class: "form-control", min: 0 %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Category</p>
+                  <ul class="selectors input-text">
+                  <li>
+                      <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true,class: "form-control", min: 0%>
+                  </li>
+                </div>
+              </div>
+                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Upload Your Product</p>
+                  <ul class="selectors input-text">
+                    <li>
+                      <%=f.file_field :image, class: "form-control", min: 0 %>
+
+                    
+ 
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-  <center>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.number_field :price %>
+ <div class="action">
+    <%= f.submit "Create",class: "btn-hover color-signup" %>
   </div>
- <div class="field">
- <%= f.label :full_price%>
- <%= f.number_field :full_price%>
-  </div>
-  <div class="field">
- <%= f.label :description%>
- <%= f.text_field :description%>
-  </div>
-  
- <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true,class: "form-control"%>
-  </div>
-    <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+<%end%>
+<style type="text/css">
+  .card {
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.8s;
+  border-radius: 10px;
+  background-color: #7ca9a45e;
+ /* 5px rounded corners */
+  }
+  .buttons {
+  margin: 10%;
+  text-align: center;
+  }
+  .btn-hover {
+  width: 150px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  }
+  .btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  }
+  .btn-hover:focus {
+  outline: none;
+  }
+  .btn-hover.color-signup {
+  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+  }
+  .form-control{
+    border-radius:20px;
+  }
+</style>
+   <script type="text/javascript">
+$(document).ready(function() {           
+    $('input').attr('required', true); 
+  });
+</script>

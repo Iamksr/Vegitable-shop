@@ -16,6 +16,7 @@
         aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+       
       <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -63,7 +64,7 @@
           <%= form_tag "/products", :method=>"get" do %>
             <div class="input-group">
               <%= text_field_tag :search, nil, :placeholder=>"Search for products", class: 'form-control' %>
-              <button class="btn btn-default input-group-btn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              <button class="btn btn-info" type="submit"><i class="glyphicon glyphicon-search"></i>Search</button>
             </div>
           <% end %>
         </div>
@@ -109,6 +110,7 @@
         </ul>
       </div>
     </nav>
+ 
 <!--/.Navbar -->
     <%= yield %>
   </body>
@@ -121,4 +123,43 @@
 {
    background-image: linear-gradient(to right, #fc4a1a #f7b733 #f7b733);
 }
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+body {
+ 
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size:18px !important;
+}
+/* Custom default button */
+.btn-default {
+  color: #fff;
+  text-shadow: none;
+  /* Prevent inheritence from `body` */
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.cover-copy{
+    color:#fff !important ;
+}
+
+.btn-notify{
+    border:2px solid #fff !important;
+}
+
+
+
 </style>

@@ -15,14 +15,13 @@
   </thead>
 
   <tbody>
-       <tr  style= "background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);">
+       <tr>
         <td><%= current_user.name %></td>
         <td><%= current_user.email %></td>
         <td><%= current_user.gender_display %></td>
         <td><%= current_user.mobile_no %></td>
         <td><%= current_user.address %></td>
-        <% if current_user.image.present? %>
-          <td><%= image_tag current_user.image.url(:thumb) %></td>
+       
         <% end %>
         	<!-- <td><%#= image_tag current_user.image.url if current_user.image? %></td> -->
         

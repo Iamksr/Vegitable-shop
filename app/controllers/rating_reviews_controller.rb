@@ -5,7 +5,7 @@ class RatingReviewsController < ApplicationController
   end
 
   def show
-    @reviews = @product.try(:rating_reviews).to_a
+    @review = @product.try(:rating_reviews).to_a
     @avg_rating = if @reviews.blank?
       0
     else

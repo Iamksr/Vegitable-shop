@@ -7,7 +7,10 @@
       <th>Email</th>
       <th>Gender</th>
       <th>Mobile no</th>
-      <th>Image</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,10 +22,8 @@
         <td><%= user.email %></td>
         <td><%= user.gender %></td>
         <td><%= user.phone %></td>
-        <td><%= image_tag user.image.url(:thumb) if user.image.present? %></td>
         <td><%= link_to 'Show', admin_user_path(user), :class => 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user),:class => 'btn btn-warning' %></td> 
-        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-danger' %></td>  
+          
     </tr>
     <% end %>
   </tbody>

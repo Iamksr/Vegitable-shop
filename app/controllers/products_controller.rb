@@ -120,6 +120,7 @@ def add_to_cart
     redirect_to "/cart"
   end
   def remove_wishlist
+  
     @product = Product.friendly.find(params[:id])
      @remove_wishlist = current_user.wishlists.where(product_id: @product.id).first.destroy
     redirect_to "/wishlist"
