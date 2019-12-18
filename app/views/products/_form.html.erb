@@ -1,13 +1,12 @@
-
-
 <%= form_for(product) do |f| %>
-
 <div class='row'>
   <div class='order_form col-md-9'>
     <div class='row'>
       <div class='col-md-12'>
         <div class="panel panel-default">
-           <center> <div class="panel-heading"><strong>New Product</strong></div></center>
+          <center>
+            <div class="panel-heading"><strong>New Product</strong></div>
+          </center>
           <div class="panel-body">
             <div class="card">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
@@ -55,19 +54,16 @@
                   <p>Category</p>
                   <ul class="selectors input-text">
                   <li>
-                      <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true,class: "form-control", min: 0%>
+                    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true,class: "form-control", min: 0%>
                   </li>
                 </div>
               </div>
-                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
                   <p>Upload Your Product</p>
                   <ul class="selectors input-text">
                     <li>
                       <%=f.file_field :image, class: "form-control", min: 0 %>
-
-                    
- 
                     </li>
                   </ul>
                 </div>
@@ -78,7 +74,7 @@
       </div>
     </div>
   </div>
- <div class="action">
+  <div class="action">
     <%= f.submit "Create",class: "btn-hover color-signup" %>
   </div>
 </div>
@@ -89,7 +85,7 @@
   transition: 0.8s;
   border-radius: 10px;
   background-color: #7ca9a45e;
- /* 5px rounded corners */
+  /* 5px rounded corners */
   }
   .buttons {
   margin: 10%;
@@ -127,11 +123,11 @@
   box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
   }
   .form-control{
-    border-radius:20px;
+  border-radius:20px;
   }
 </style>
-   <script type="text/javascript">
-$(document).ready(function() {           
-    $('input').attr('required', true); 
-  });
+<script type="text/javascript">
+  $(document).ready(function() {           
+      $('input').attr('required', true); 
+    });
 </script>

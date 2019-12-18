@@ -24,14 +24,10 @@
             <span class="sr-only">(current)</span>
             </a>
           </li>
-          <!-- <li class= "<%#= params[:controller] == "vote_polls" && params[:action] == "index" ? 'active' : '' %>" ><a href="/admin/vote_polls">Polls</a></li> -->
           <% if current_user.try(:role) == "admin" %>
           <li class="nav-item">
             <a class="nav-link" href="/products/new">New Product</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link  "href="/products_all">Products Listing</a>
-            </li> -->
           <li class="nav-item">
             <a class="nav-link" href="/admin/users">Users</a>
           </li>
@@ -44,10 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/order_delivery_report">Report</a>
           </li>
-          <% end %> 
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/orders_history">Order history</a>
-            </li> -->
+          <% end %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false", style="cursor: pointer;">Search product with category
@@ -61,7 +54,6 @@
             </div>
           </li>
         </ul>
-        <!-- Search Bar -->
         <div class="col-sm-4 col-md-4 pull-right">
           <%= form_tag "/products", :method=>"get" do %>
           <div class="input-group">
@@ -100,7 +92,6 @@
               <a class="dropdown-item" href="/orders">My Orders</a>
               <a class="dropdown-item" href="/user_profile">My Profile</a>
               <a class="dropdown-item" href="/users/sign_out">Sign Out</a>
-              
               <!-- <a class="dropdown-item" href="#"> <%#= link_to 'Profile',  userpath%></a> -->
               <!-- <a class="dropdown-item" href="#"><%#= link_to "Logout", destroy_user_session_path, method: :delete %></a> -->
               <% else %>
