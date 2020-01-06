@@ -8,10 +8,10 @@ class Product < ApplicationRecord
   # has_many :orders
         has_many :order_items, dependent: :destroy
         has_many :cart_items
-      mount_uploader :image, ImageUploader
-      extend FriendlyId
-      friendly_id :name, use: :slugged
-    
+        mount_uploader :image, ImageUploader
+        extend FriendlyId
+        friendly_id :name, use: :slugged
+      
 
 
 

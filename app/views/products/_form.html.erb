@@ -1,21 +1,35 @@
 <%= form_for(product) do |f| %>
-<div class='row'>
+
+<div class='row-md-12'>
   <div class='order_form col-md-9'>
     <div class='row'>
       <div class='col-md-12'>
         <div class="panel panel-default">
           <center>
-            <div class="panel-heading"><strong>New Product</strong></div>
-          </center>
+            <div class="panel-heading"><strong>New Vegitable</strong></div>
+        </center>
           <div class="panel-body">
             <div class="card">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
-                  <p>Name</p>
+                  <p>Vegitables Name</p>
                   <ul class="selectors input-text">
-                    <li>
-                      <%= f.text_field :name, class: "form-control" %>
-                    </li>
+                  <li><%= f.text_field :name, class: "form-control", min: 0%></li></ul>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Category</p>
+                  <ul class="selectors input-text">
+                    <li> <%= f.collection_select :category_id, Category.order(:name), :id, :name, {prompt: "Select Vegitable's Category"},class: "form-control"%></li>
+                  </ul>
+                </div>
+              </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
+                  <p>Curent Price</p>
+                  <ul class="selectors input-text">
+                    <li><%= f.text_field :price, class: "form-control", min: 0%></li>
                   </ul>
                 </div>
               </div>
@@ -23,48 +37,23 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
                   <p>Price</p>
                   <ul class="selectors input-text">
-                    <li>
-                      <%= f.text_field :price, class: "form-control", min: 0 %>
-                    </li>
+                    <li><%= f.text_field :full_price, class: "form-control", min: 0 %></li>
                   </ul>
                 </div>
               </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
-                  <p>Full Price</p>
-                  <ul class="selectors input-text">
-                    <li>
-                      <%= f.text_field :full_price, class: "form-control", min: 0 %>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
                   <p>Description</p>
                   <ul class="selectors input-text">
-                    <li>
-                      <%= f.text_area :description, class: "form-control", min: 0 %>
-                    </li>
+                    <li><%= f.text_area :description, class: "form-control", min: 0 %></li>
                   </ul>
                 </div>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
-                  <p>Category</p>
+                  <p>Image</p>
                   <ul class="selectors input-text">
-                  <li>
-                    <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: true,class: "form-control", min: 0%>
-                  </li>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding select-room">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding">
-                  <p>Upload Your Product</p>
-                  <ul class="selectors input-text">
-                    <li>
-                      <%=f.file_field :image, class: "form-control", min: 0 %>
-                    </li>
+                    <li><%= f.file_field :image, class: "form-control", min: 0 %></li>
                   </ul>
                 </div>
               </div>
@@ -74,19 +63,82 @@
       </div>
     </div>
   </div>
-  <div class="action">
-    <%= f.submit "Create",class: "btn-hover color-signup" %>
-  </div>
+</div>
+<div class="action">
+  <%= f.submit "Add Vegitables",class: "btn-hover color-signup" %>
 </div>
 <%end%>
+<script type="text/javascript">
+  $(document).ready(function() {            
+    $('input').attr('required', true);   
+  });
+</script>
 <style type="text/css">
-  .card {
-  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.8s;
-  border-radius: 10px;
-  background-color: #7ca9a45e;
-  /* 5px rounded corners */
-  }
+  body{
+      font-family: "Marvel", sans-serif;
+}
+
+.card {
+  position: center;
+  display: inline-block;
+  width: 100%;
+  height: 80%;
+  padding: 4rem 1rem 7rem 1rem;
+  background-color: teal;
+  position: relative;
+  border:0px !important;
+}
+.panel-heading {
+  font-family: "Times New Roman",American Typewriter, serif;
+  width: 100%;
+  background: linear-gradient(to right,#f9d62c,#006767);
+  font-size: 30px;
+}
+
+
+.card:after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0px;
+  background-color: skyblue;
+  top: 0px;
+  right: 0px;
+  border-bottom: 20px solid #006767;
+  border-left: 20px solid #006767;
+  border-right: 20px solid yellow;
+  border-top: 20px solid yellow;
+  position: absolute;
+  -webkit-filter: drop-shadow(-5px 5px 3px rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(-5px 5px 3px rgba(0, 0, 0, 0.5));
+}
+.card:before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-top: 40px solid #006767;
+  border-right: 40px solid #006767;
+  border-left: 40px solid yellow;
+  border-bottom: 40px solid yellow;
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  -webkit-filter: drop-shadow(7px -7px 5px rgba(0, 0, 0, 0.5));
+          filter: drop-shadow(7px -7px 5px rgba(0, 0, 0, 0.5));
+  margin-right: 10%;
+}
+.card:nth-of-type(1) {
+  margin-right: 40%;
+  margin-top: 0%;
+}
+
+
+.ftr{
+    text-align: center;
+}
+}
+
   .buttons {
   margin: 10%;
   text-align: center;
@@ -123,11 +175,12 @@
   box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
   }
   .form-control{
-  border-radius:20px;
+  border-radius: 30px;
   }
+  .main-content {
+    text-align: center;
+    float: right;
+}
 </style>
-<script type="text/javascript">
-  $(document).ready(function() {           
-      $('input').attr('required', true); 
-    });
-</script>
+
+

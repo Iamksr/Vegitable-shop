@@ -9,13 +9,13 @@ default: &default
   timeout: 5000
 development:
   <<: *default
-  database: e-commerce
+  database: vegitable-shop
   username: root
   password: root
 
 
 production:
   <<: *default
-  database: e-commerce
+  database: vegitable-shop
   username: root
   password: root

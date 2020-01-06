@@ -21,7 +21,7 @@
         </li>
         <%  if current_user.try(:role) == "admin" %>
         <li class="nav-item">
-          <a class="nav-link" href="/products/new">New Product</a>
+          <a class="nav-link" href="/products/new">New Vegitables</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="/products_all">Products Listing</a>
@@ -68,10 +68,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" href="/cart">
-          <i class="glyphicon glyphicon-shopping-cart"></i>
+          <a class="nav-link" href="/cart">
+          <i class="fa fa-shopping-cart"></i><span>
           <% cart = Cart.where(is_done: false).first %>
-          <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %>
+          <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %></span>
           <% end %>
           </a>
         </li>
@@ -98,6 +98,38 @@
     </div>
   </nav>
   <%= yield %>
+  <div class="mt-5 pt-5 pb-5 footer">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 col-xs-12 about-company">
+      <h2>Vegitable Garden</h2>
+      <p class="pr-5 text-white-50"></p>
+    </div>
+    <div class="col-lg-3 col-xs-12 links">
+      <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+        <ul class="m-0 p-0">
+          <li>- <a href="#">About Us</a></li>
+          <li>- <a href="#">Contacts</a></li>
+          <li>- <a href="#">Term & Conditinons</a></li>
+          <li>- <a href="#">Ask A Question</a></li>
+          <li>- <a href="#">Company Rules</a></li>
+          <li>- <a href="#">Developers</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-4 col-xs-12 location">
+     <a href="https://www.google.com/maps/dir/Bittern+Technologies,+Sector+2,+Noida,+Uttar+Pradesh//@28.5871857,77.2817309,13z/data=!4m8!4m7!1m5!1m1!1s0x390cfcaa17f85401:0xde4be778659016c3!2m2!1d77.3168364!2d28.5871149!1m0" i class="fa fa-envelope"></i>Get Location</a>
+      <p>B-41, SEC-2 Noida Uttar Pradesh</p>
+      <p class="mb-0"><i class="fa fa-phone mr-3"></i>(+91)9170002122</p>
+      <p class="mb-0"><i class="fa fa-envelope"></i>info@bitterntec.com</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col copyright">
+      <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
+    </div>
+  </div>
+</div>
+</div>
   <style type="text/css">
     .navbar-color
     {
@@ -109,6 +141,7 @@
     color: #fff;
     }
     body {
+    cursor: progress;
     background-size: cover;
     color: #fff;
     text-align: center;
@@ -135,4 +168,33 @@
     .btn-notify{
     border:2px solid #fff !important;
     }
+      .footer{
+    height: 50%;
+  background: #152F4F;
+  color:white;
+  
+  .links{
+    ul {list-style-type: none;}
+    li a{
+      color: white;
+      transition: color .2s;
+      &:hover{
+        text-decoration:none;
+        color:#4180CB;
+        }
+    }
+  }  
+  .about-company{
+    i{font-size: 25px;}
+    a{
+      color:white;
+      transition: color .2s;
+      &:hover{color:#4180CB}
+    }
+  } 
+  .location{
+    i{font-size: 18px;}
+  }
+  .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
+}
   </style>
