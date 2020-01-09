@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require popper
 //= require bootstrap
-//= require_tree .
 //= require chartkick
 //= require Chart.bundle
+//= require bootstrap-sprockets
+//= require jquery.geocomplete.min
+//= require_tree .

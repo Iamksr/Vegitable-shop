@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :places
   # resources :rating_reviews
   devise_for :users
   resources :addresses
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   resources :charges
   resources :categories
   resources :rating_reviews
+
+  get 'products/user/:id' => "products#user_product"
 
   root 'welcome#about'
   # resources :orders

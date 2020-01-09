@@ -48,9 +48,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role, :name, :gender, :image, :is_active, :is_admin])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :role, :name, :gender, :image, :is_active, :is_admin])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role, :name, :gender, :image, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :role, :name, :gender, :image, :is_active, :is_admin,  :city, :state, :zip_code, :latitude, :longitude, :country,:product_id])
 
   end
 
@@ -64,10 +65,10 @@ class ApplicationController < ActionController::Base
   protected   
     def configure_permitted_parameters  
       devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-        user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :address)
+        user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id)
     end
       devise_parameter_sanitizer.permit(:account_update) do |user_params|
-      user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :address,:current_password)
+      user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :address,:current_password, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id)
     end
   end
   

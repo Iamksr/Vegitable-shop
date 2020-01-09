@@ -1,5 +1,4 @@
 
-<br><br><br>
 <div class="container">
     <h3 class="h3">Your Shop </h3>
     <div class="row">
@@ -172,39 +171,6 @@
 
 </style>
 
-<div id="map"  style="width: 96%; height: 400px; text-align: center;" ></div>
-
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk&libraries=places"></script>
-<script>
-  $(document).ready(function()
-  {
-    var locations = <%= raw @map_data.to_json %>;
-    console.log("Data", locations)
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
-      center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      $("#loc").val(locations[i][0]);
-        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-        return function() {
-        var Content = '<div class="card-body">' + '<h3 class="card-title">' + locations[i][0]+ '</h3>' + " " + '<div class="card-text">'  + locations[i][4] + '</div>' + '</div>' + '<br>' + '<a href=" /products", class="btn btn-primary">More info</a>'
-              infowindow.setContent(Content);
-              infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-  });
-</script> 
 
 
 
@@ -212,26 +178,4 @@
 
 
 
-<!-- <div style='width: 800px;'>  
-  <div id="map" style='width: 800px; height: 400px;'></div>  
-</div>  
 
-<script type="text/javascript">  
-handler = Gmaps.build('Google');  
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){  
-  markers = handler.addMarkers([  
-    {  
-      "lat": 37.3333945,  
-      "lng": -121.8806499,  
-      "picture": {  
-        "width":  32,  
-        "height": 32  
-      },  
-      "infowindow": "SJSU"  
-    }  
-  ]);  
-  handler.bounds.extendWith(markers);  
-  handler.fitMapToBounds();  
-});  
-</script>
- -->

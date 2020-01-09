@@ -1,9 +1,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
+  def user_product
+    @products = Product.where(user_id: params[:id])
+  end
   # GET /products
   # GET /products.json
   def index
+    @events = User.all
+    @map_data = @events.map{|e| [ e.email,  e.latitude, e.longitude, e.image,e.name, e.city, e.state, e.id]}
     if params[:id].present?
           @category = Category.find(params[:category_id])
           @products = @cat.products.paginate(page: params[:page], per_page: 4)
@@ -24,8 +29,7 @@ class ProductsController < ApplicationController
     # # @products = Product.all
     #  @categories = Category.all
   end
-def chatbox
-end
+
   # GET /products/1
   # GET /products/1.json
   def show
