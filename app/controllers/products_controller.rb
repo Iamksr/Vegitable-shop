@@ -4,6 +4,9 @@ class ProductsController < ApplicationController
   def user_product
     @products = Product.where(user_id: params[:id])
   end
+  def current_user_product
+    @products = current_user.products.paginate(page: params[:page], per_page: 4)
+  end
   # GET /products
   # GET /products.json
   def index
@@ -134,7 +137,7 @@ def add_to_cart
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+    
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -182,6 +185,6 @@ def add_to_cart
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :category_id, :image, :description, :full_price, :quantity)
+      params.require(:product).permit(:name, :price, :category_id, :image, :description, :full_price, :quantity, :user_id)
     end
 end

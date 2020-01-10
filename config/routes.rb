@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   resources :charges
   resources :categories
   resources :rating_reviews
-
+  # get 'user_product' => "products#user_product"
   get 'products/user/:id' => "products#user_product"
+  get 'products/current-user' => "products#current_user_product"
 
   root 'welcome#about'
   # resources :orders

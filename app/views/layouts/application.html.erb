@@ -19,19 +19,22 @@
           <li class="logo">
             <img src="https://www.designfreelogoonline.com/wp-content/uploads/2014/11/00183-Fruits-Vegetables-logo-design-free-logos-online-02.png">
           </li>
-          <% if current_user.try(:role) == "admin" %>
+           <% if user_signed_in? %>
           <li class="nav-item">
             <a class="nav-link" href="/products/new">New Vegitables</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/users">Users</a>
+         <li class="nav-item">
+            <a class="nav-link " href="/categories">Category</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/products/current-user">Your Products</a>
+          </li>
+          <%end%>
           <li class="nav-item">
             <a class="nav-link" href="/products/">Vegitables</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="/categories">Category</a>
-          </li>
+          
+           <% if current_user.try(:role) == "admin" %>
           <li class="nav-item">
             <a class="nav-link" href="/order_delivery_report">Report</a>
           </li>
@@ -68,6 +71,7 @@
             <% end %>
             </a>
           </li>
+          <% if user_signed_in? %>
           <li class="nav-item">
             <a class="nav-link" href="/cart">
             <i class="fa fa-shopping-cart"></i><span>
@@ -76,6 +80,7 @@
             <% end %>
             </a>
           </li>
+          <%end%>
           <!-- User Authentication -->
           <% if user_signed_in? %>
           <li class="nav-item dropdown">
@@ -106,6 +111,7 @@
     </nav>
     <!--/.Navbar -->
     <%= yield %>
+    <% if user_signed_in? %>
 <div class="mt-5 pt-5 pb-5 footer">
 <div class="container">
   <div class="row">
@@ -138,6 +144,7 @@
   </div>
 </div>
 </div>
+<%end%>
 <style type="text/css">
 
   .navbar-color

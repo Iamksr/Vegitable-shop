@@ -1,0 +1,41 @@
+<br><br><br>
+<div class="container">
+    <h3 class="h3">Your Shop </h3>
+    <div class="row">
+       <% @products.each do |product| %>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid4">
+                <div class="img-hover-zoom">
+                    <a href="#">
+                      <%= image_tag(product.image_url, :size => "160x180") %>
+                        
+                    </a>
+                    <ul class="social">
+                        <li><a href="/products/<%= product.friendly_id%>" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="/products/<%= product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-shopping-cart"></i></a></li>
+                        <!-- <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li> -->
+                    </ul>
+                    <span class="product-new-label">New</span>
+
+                    <span class="product-discount-label"><%= product.discount_percentage.to_f.round(2) %>%</span>
+                   <!--  (<%#= product.discount_percentage.to_f.round(2)%> -->
+                </div>
+                
+                <div class="product-content">
+                     <h3 style="min-height: 70px !important;"><%= product.name %></h3>
+                    <div class="price">
+                      ₹<%= product.price%>
+                   <s>₹<%=product.full_price %></s>  
+                    </div>
+                    <a class="add-to-cart" href="/products/<%= product.id %>/cart">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div><br>
+     <center class="digg_pagination">
+ <%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
+  </center>
+</div>
+
+<br>

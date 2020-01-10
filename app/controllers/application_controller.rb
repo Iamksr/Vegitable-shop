@@ -1,17 +1,5 @@
 class ApplicationController < ActionController::Base
-  # before_action :configure_permitted_parameters, if: :devise_controller?
-  
-  # before_action :authenticate_user!
-  # helper_method :current_order
-  
-  # def current_order
-  #   if session[:order_id]
-  #     Order.find(session[:order_id])
-  #   else
-  #     Order.new
-  #   end
-  # end 
-  # ==========  current user cart create =====
+
 
   def current_cart
     if current_user.present?
@@ -45,14 +33,6 @@ class ApplicationController < ActionController::Base
           redirect_to "/users/sign_in"
       end
     end
-  end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role, :name, :gender, :image, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :role, :name, :gender, :image, :is_active, :is_admin,  :city, :state, :zip_code, :latitude, :longitude, :country,:product_id])
-
   end
 
   def authentication_admin!

@@ -1,65 +1,56 @@
 
-<br><br><br>
-<div class="container">
-    <h3 class="h3">Your Shop </h3>
-    <div class="row">
-       <% @products.each do |product| %>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="img-hover-zoom">
-                    <a href="#">
-                      <%= image_tag(product.image_url, :size => "160x180") %>
-                        
-                    </a>
-                    <ul class="social">
-                        <li><a href="/products/<%= product.friendly_id%>" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="/products/<%= product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-shopping-cart"></i></a></li>
-                        <!-- <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li> -->
-                    </ul>
-                    <span class="product-new-label">New</span>
 
-                    <span class="product-discount-label"><%= product.discount_percentage.to_f.round(2) %>%</span>
-                   <!--  (<%#= product.discount_percentage.to_f.round(2)%> -->
-                </div>
-                
-                <div class="product-content">
-                     <h3 style="min-height: 70px !important;"><%= product.name %></h3>
-                    <div class="price">
-                      ₹<%= product.price%>
-                   <s>₹<%=product.full_price %></s>  
-                    </div>
-                    <a class="add-to-cart" href="/products/<%= product.id %>/cart">ADD TO CART</a>
-                </div>
-            </div>
-        </div>
-        <% end %>
-    </div><br>
-     <center class="digg_pagination">
- <%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
-  </center>
-</div>
+<div id="map"  style="width: 96%; height: 400px; text-align: center;" ></div>
 
-<!-- <div class="container">
-  <div class="row">
-    <center>
-    <ul class="pagination-custom text-center">
-          <li class="pag-link"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-          <%#= will_paginate @products , class: "pag-link" %> 
-          <li class="pag-link"><a href="#">1</a></li>
-          <li class="pag-link"><a href="#">2</a></li>
-          <li class="pag-link current">class="pag-link"<span>3</span></li>
-          <li class="pag-link"><a href="#">4</a></li>
-          <li class="pag-link"><a href="#">5</a></li>
-          <li class="pag-link"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-        </ul></center>
-  </div>
-</div> -->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk&libraries=places"></script>
+<script>
+  $(document).ready(function()
+  {
+    var locations = <%= raw @map_data.to_json %>;
+    console.log("Data", locations)
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      $("#loc").val(locations[i][0]);
+        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+        return function() {
+        var Content = '<div class="card-body">' + '<h3 class="card-title">' + locations[i][4]+ '</h3>' + " " + '<div class="card-text">'  + locations[i][4] + '</div>' + '</div>' + '<br>' + '<a href=" /products/user/' + locations[i][7] + '", class="btn btn-primary">Visit My Shop</a>' 
+              infowindow.setContent(Content);
+              infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  });
+
+// var targetLat=marker.getPosition().lat();
+// var targetLng=marker.getPosition().lng();
+
+// var targetLoc = new GLatLng(targetLat,targetLng);
+
+// var center= new GLatLng(centerLat, centerLng); 
+
+// var distanceInkm=center.distanceFrom(targetLoc) / 1000;
+
+// if(distanceInkm < radius){
+// // To add the marker to the map, call setMap();
+// marker.setMap(map);
+// }
+</script> 
 
 
 
-<!--   <%= will_paginate @products %> -->
 
-<br>
 <style type="text/css">
   body{
   position: relative;
@@ -115,12 +106,8 @@
 .img-hover-zoom:hover img {
   transform: scale(1.5);
 }
-</style>
 
-</style>
-
-<style type="text/css">
-  .pag-link {
+.pag-link {
     display: inline-block;
     vertical-align: middle;
     padding: 2px;
@@ -171,45 +158,6 @@
 }
 
 </style>
-
-<div id="map"  style="width: 96%; height: 400px; text-align: center;" ></div>
-
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk&libraries=places"></script>
-<script>
-  $(document).ready(function()
-  {
-    var locations = <%= raw @map_data.to_json %>;
-    console.log("Data", locations)
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
-      center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      $("#loc").val(locations[i][0]);
-        google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-        return function() {
-        var Content = '<div class="card-body">' + '<h3 class="card-title">' + locations[i][0]+ '</h3>' + " " + '<div class="card-text">'  + locations[i][4] + '</div>' + '</div>' + '<br>' + '<a href=" /products", class="btn btn-primary">More info</a>'
-              infowindow.setContent(Content);
-              infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-  });
-</script> 
-
-
-
-
-
 
 
 <!-- <div style='width: 800px;'>  
