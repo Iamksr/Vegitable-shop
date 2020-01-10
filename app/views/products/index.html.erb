@@ -8,7 +8,19 @@
   {
     var locations = <%= raw @map_data.to_json %>;
     console.log("Data", locations)
-
+   var searchBox = new google.maps.places.SearchBox(document.getElementById('map'));
+      google.maps.event.addListener(searchBox , 'place_changed' , function(){
+            var places = searchBox.getPlaces();
+            var bounds =  new google.maps.LatLngBounds();
+            var i,place;
+            for( i = 0; palce = places[i]; i++)
+            {
+            bounds.extend(place.geometry.location);
+            marker.setPosition(place.geometry.location);
+            }
+            map.fitBounds(bounds);
+            map.setZoom(12);
+        });
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
       center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
@@ -25,7 +37,7 @@
       $("#loc").val(locations[i][0]);
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
         return function() {
-        var Content = '<div class="card-body">' + '<h3 class="card-title">' + locations[i][4]+ '</h3>' + " " + '<div class="card-text">'  + locations[i][4] + '</div>' + '</div>' + '<br>' + '<a href=" /products/user/' + locations[i][7] + '", class="btn btn-primary">Visit My Shop</a>' 
+        var Content = '<div class="card-body">' + '<h3 class="card-title">' + locations[i][4] + '</h3>' + " " + '<div class="card-text">'  + locations[i][5]+locations[i][6] + '</div>' + '</div>' + '<br>' + '<a href=" /products/user/' + locations[i][7] + '", class="btn btn-primary">Visit My Shop</a>' 
               infowindow.setContent(Content);
               infowindow.open(map, marker);
         }
