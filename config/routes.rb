@@ -12,8 +12,13 @@ Rails.application.routes.draw do
   get 'products/user/:id' => "products#user_product"
   get 'products/current-user' => "products#current_user_product"
 
-  root 'welcome#about'
+   root 'welcome#about'
   # resources :orders
+  # ...
+
+resources :conversations, only: [:index, :show]
+resources :users, only: [:index]
+resources :personal_messages, only: [:new, :create]
   resources :products do
   	 get "/cart" => "products#add_to_cart"
      get "/wishlist", action: :add_wishlist, as: :add_wishlist
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
   #     get 'order_pdf'
   #   end
   # end 
+
 # get 'products_all' => "products#all_product"
 get '/product/:id' => "products#show"
    get 'order_pdf' => 'orders#order_pdf'

@@ -23,7 +23,9 @@
         <td><%= user.gender %></td>
         <td><%= user.phone %></td>
         <td><%= link_to 'Show', admin_user_path(user), :class => 'btn btn-primary' %></td>
-          
+          <td><li>
+  <h1 style="color:red;"><%= user.name %> </h1>| <%= link_to 'send a message', new_personal_message_path(receiver_id: user) %>
+</li></td>
     </tr>
     <% end %>
   </tbody>

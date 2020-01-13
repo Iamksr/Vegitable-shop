@@ -18,4 +18,5 @@
 //= require Chart.bundle
 //= require bootstrap-sprockets
 //= require jquery.geocomplete.min
+//= require conversations
 //= require_tree .
