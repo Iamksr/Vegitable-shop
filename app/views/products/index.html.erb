@@ -1,6 +1,56 @@
 
-
+<% if user_signed_in? %>
 <div id="map"  style="width: 96%; height: 400px; text-align: center;" ></div>
+<%else%>
+<div class="text-center "><div>
+      <div class="btn-group">
+        <a class="btn btn--blue btn--stroke btn--stroke--2 px24 py12 txt-s round-full px36" href="/users/sign_in" data-reactid="593">Login Here!</a>
+      </div>
+    </div>
+<%end %>
+<style type="text/css">
+  <style type="text/css">
+  body{
+  position: relative;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.7686274509803922), rgba(255, 255, 255, 0.7686274509803922)), url("https://images3.alphacoders.com/103/thumb-1920-1038304.jpg") no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+element.style {
+}
+.btn.btn--red {
+    background-color: red;
+}
+
+.btn--stroke.btn--red {
+    color: #4267fb;
+}
+.btn.btn--stroke {
+    background-color: red;
+}
+.py12 {
+    padding-top: 12px!important;
+    padding-bottom: 12px!important;
+}
+
+.round-full {
+    border-radius: 9999px!important;
+}
+.txt-s {
+    font-size: 12px;
+    line-height: 18px;
+}
+.btn--stroke--2 {
+    box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.px36 {
+    padding-left: 36px!important;
+    padding-right: 36px!important;
+}
+</style>
+ 
+</style>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk&libraries=places"></script>
 <script>
@@ -19,10 +69,10 @@
             marker.setPosition(place.geometry.location);
             }
             map.fitBounds(bounds);
-            map.setZoom(12);
+            map.setZoom(5);
         });
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
+      zoom: 12,
       center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -33,6 +83,14 @@
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
       });
+      
+   //Add circle overlay and bind to marker
+      var circle = new google.maps.Circle({
+        map: map,
+        radius: 10000,    // 10 km in metres
+        fillColor: 'green'
+      });
+      circle.bindTo('center', marker, 'position');
 
       $("#loc").val(locations[i][0]);
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
@@ -45,26 +103,9 @@
     }
   });
 
-// var targetLat=marker.getPosition().lat();
-// var targetLng=marker.getPosition().lng();
-
-// var targetLoc = new GLatLng(targetLat,targetLng);
-
-// var center= new GLatLng(centerLat, centerLng); 
-
-// var distanceInkm=center.distanceFrom(targetLoc) / 1000;
-
-// if(distanceInkm < radius){
-// // To add the marker to the map, call setMap();
-// marker.setMap(map);
-// }
 </script> 
-
-
-
-
 <style type="text/css">
-  body{
+   body{
     background-color: black;
   position: relative;
     background: linear-gradient(to right, rgba(255, 255, 255, 0.7686274509803922), rgba(255, 255, 255, 0.7686274509803922)), url("https://images3.alphacoders.com/103/thumb-1920-1038304.jpg") no-repeat center center fixed;
@@ -93,6 +134,11 @@ body, html {
     clear: both;
 }
 body {
+    font-family: 'Roboto', Calibri, Arial, sans-serif;
+    color: #89867e;
+    background: #fff;
+}
+.card {
     font-family: 'Roboto', Calibri, Arial, sans-serif;
     color: #89867e;
     background: #fff;
@@ -906,28 +952,3 @@ element.style {
 }
 
 </style>
-
-
-<!-- <div style='width: 800px;'>  
-  <div id="map" style='width: 800px; height: 400px;'></div>  
-</div>  
-
-<script type="text/javascript">  
-handler = Gmaps.build('Google');  
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){  
-  markers = handler.addMarkers([  
-    {  
-      "lat": 37.3333945,  
-      "lng": -121.8806499,  
-      "picture": {  
-        "width":  32,  
-        "height": 32  
-      },  
-      "infowindow": "SJSU"  
-    }  
-  ]);  
-  handler.bounds.extendWith(markers);  
-  handler.fitMapToBounds();  
-});  
-</script>
- -->

@@ -10,7 +10,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @events = User.all
+    # @events = User.all
+    @lat = current_user.latitude
+    @long = current_user.longitude
+    @events = User.near([@lat, @long], 10) 
     @map_data = @events.map{|e| [ e.email,  e.latitude, e.longitude, e.image,e.name, e.city, e.state, e.id]}
     if params[:id].present?
           @category = Category.find(params[:category_id])

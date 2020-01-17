@@ -29,8 +29,8 @@
           <li class="nav-item">
             <a class="nav-link" href="/products/current-user">Your Products</a>
           </li>
-          <%end%>
-          <li class="nav-item">
+          
+           <li class="nav-item">
             <a class="nav-link" href="/products/">Vegitables</a>
           </li>
           
@@ -51,11 +51,12 @@
               <% end %>
             </div>
           </li>
+          <%end%>
         </ul>
         <div class="col-sm-4 col-md-4 pull-right">
           <%= form_tag "/products", :method=>"get" do %>
           <div class="input-group">
-            <%= text_field_tag :search, nil, :placeholder=>"Search for products", class: 'form-control' %>
+            <%= text_field_tag :search, nil, :placeholder=>"Search for Vegitables", class: 'form-control' %>
             <button class="btn btn-default input-group-btn" type="submit"><i class="glyphicon glyphicon-search">Search</i></button>
           </div>
           <% end %>
@@ -101,16 +102,13 @@
           </div> 
           
           <% end %>
-          <li class="nav-item">
-            <a class="nav-link"  href="/chatbox" id="addClass"><i class="fa fa-comment"></i><span></span>
-            </a>
-          </li>
-          <!--  -->
+
         </ul>
       </div>
     </nav>
     <!--/.Navbar -->
     <%= yield %>
+    <!-- Footer -->
     <% if user_signed_in? %>
 <div class="mt-5 pt-5 pb-5 footer">
 <div class="container">
@@ -149,7 +147,7 @@
 
   .navbar-color
   {
-  background-image: linear-gradient(to right, #3076A7, #19398A);
+  background-image: linear-gradient(to right, #ea2525, #19398A);
   }
   .btn:hover {
   background-position: right center; /* change the direction of the change here */
@@ -159,7 +157,11 @@
   cursor: progress;
   font-family: 'Montserrat', sans-serif;
   margin:0;
-  }
+}
+  .navbar-dark .navbar-nav .nav-link {
+    color: aliceblue;
+}
+ 
   .container {
   display: flex;
   justify-content: center;
@@ -169,6 +171,19 @@
   width: 80vw;
   margin: 0 auto;
   min-height: 100vh;
+  }
+  #search {
+    display: block;
+    width: 10%;
+    padding: .375rem .75rem;
+    font-size: x-small;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 1rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
   .btn {
   /*flex: 1 1 auto;*/
@@ -181,7 +196,7 @@
   color: white;
   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
   box-shadow: 0 0 20px #eee;
-  border-radius: 4px;
+  border-radius: 40px;
   }
   .footer{
     height: 100%;

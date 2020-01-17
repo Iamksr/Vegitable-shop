@@ -15,8 +15,9 @@ class User < ApplicationRecord
        def is_admin?
           return true if self.role =="admin"
         end
+        geocoded_by :address
 
         has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'author_id'
           has_many :received_conversations, class_name: 'Conversation', foreign_key: 'received_id'
           has_many :personal_messages, dependent: :destroy
-          end
+end
