@@ -2,6 +2,7 @@
                <%= render "devise/shared/error_messages", resource: resource %>
               <h1><strong></strong></h1>
                 <div class="col-lg-8 col-md-8 col-xs-12">
+                  <center><h1>Sign Up Here!</h1></center>
                     <div class="contact-form">
                         <form id="contact" action="" method="get">
                           <div class="row">
@@ -32,7 +33,7 @@
                                 <%= f.password_field :password_confirmation, required: true,autocomplete: "new-password",placeholder:"Confirm Your Password"%>
                               </fieldset>
                             </div>
-                            </div>
+                           
                           
                             <div class="col-lg-12">
                             <div id="locationField">
@@ -51,7 +52,7 @@
                                     <%= f.text_field :state, placeholder: "Your State",id: "state"%>
                                    </fieldset>
                                  </div>
-                                 <div class="col-md-6 col-sm-12">
+                                 <div class="col-md-3 col-sm-12">
                                    <fieldset>
                                     <%= f.text_field :zip_code, placeholder: "Your Portal Code",id: "zipcode"%>
                                    </fieldset>
@@ -64,15 +65,17 @@
                              
                             </table>
                             <div class="col-md-6 col-sm-12">
-                          <%= f.submit "Sign Up",class: "btn-hover color-signup" %>
+                              <ul>
+                              <li>
+                          <center><%= f.submit "Sign Up",class: "btn-hover color-signup" %></center></li>
+                          <li><p>Already have a acount ?</p>
+                                          <%= render "devise/shared/links"%></li></ul>
+
                              </div>
                         </form>
-                        
-                   
-    <%end%>
-                                          <p>Already have a acount ?</p>
-                                          <%= render "devise/shared/links"%>
-
+                      </div>                              
+                     <%end%>
+                                          
 
 
 
@@ -263,6 +266,10 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
 
 </script>
 <style type="text/css">
+  body{
+    background-image: url("https://cdn.pixabay.com/photo/2018/05/25/16/43/cube-sea-3429485_960_720.jpg");
+
+  }
   .buttons {
   margin: 10%;
   text-align: center;
@@ -301,72 +308,10 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
   #contact-us .section-heading {
   margin-bottom: 50px;
 }
-
-#contact-us .section-heading h6 {
-  color: #5fb759;
-}
-
-#contact-us .left-text-content ul li {
-  margin-bottom: 30px;
-}
-
-#contact-us .left-text-content ul li {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-#contact-us .left-text-content ul li img {
-  margin-right: 15px;
-}
-
-#contact-us {
-  padding: 120px 0px;
-  background-image: url(../images/dotted-map-bg.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-#contact {
-  margin-top: 40px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  color: #7a7a7a;
-  font-size: 15px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  width: 100%;
-  height: 46px;
-  outline: none;
-  padding-top: 3px;
-  padding-left: 20px;
-  padding-right: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin-bottom: 30px;
-}
-
-.contact-form textarea {
-  height: 150px;
-  resize: none;
-  padding: 20px;
-}
-
-.contact-form ::-webkit-input-placeholder { /* Edge */
-  color: #7a7a7a;
-}
-
-.contact-form :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #7a7a7a;
-}
-
-.contact-form ::placeholder {
-  color: #7a7a7a;
-}#contact-us .section-heading {
-  margin-bottom: 50px;
+.row {
+   margin-top: 20px;
+    margin-right: -15px;
+    margin-left: 200px;
 }
 
 #contact-us .section-heading h6 {
@@ -405,11 +350,10 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
   border: 1px solid #ddd;
   background-color: #fff;
   width: 100%;
-  height: 46px;
+  height: 36px;
   outline: none;
-  padding-top: 3px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 5px;
+  padding-left: 40px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -422,16 +366,6 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
   padding: 20px;
 }
 
-.contact-form ::-webkit-input-placeholder { /* Edge */
-  color: #7a7a7a;
-}
 
-.contact-form :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: #7a7a7a;
-}
-
-.contact-form ::placeholder {
-  color: #7a7a7a;
-}
 </style>
 

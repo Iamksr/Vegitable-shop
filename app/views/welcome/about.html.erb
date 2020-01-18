@@ -16,7 +16,11 @@
                     <h1 class="mb-5">Freash • Green • Vegitables</h1>
                 </div>
                 <div class="col-xl-12 mx-auto order-now my-padding">
+                      <% if user_signed_in? %>
                     <a href="/products">Order Now!</a>
+                    <%else%>
+                    <a href="users/sign_in">Login Here!</a>
+                    <%end%>
                 </div>
             </div>
         </div>
@@ -118,7 +122,7 @@ header.masthead {
     position: relative;
     background-color: #343a40;
     height: 100vh;
-    background: url(https://images3.alphacoders.com/735/thumb-1920-735453.jpg) no-repeat fixed center center;
+    background: url(https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) no-repeat fixed center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

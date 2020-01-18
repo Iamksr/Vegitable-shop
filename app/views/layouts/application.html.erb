@@ -1,124 +1,122 @@
-    <title>Vegitable Garden</title>
-    <%= csrf_meta_tags %>
-    <%#= javascript_include_tag 'jquery.raty.js', "data-turbolinks-track": false %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
-    <script src="/assets/jquery.js" type="text/javascript"></script>
-    <script src="/assets/jquery_ujs.js" type="text/javascript"></script>
-    
-    <!--Navbar -->
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color navbar-color">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
-          <li class="logo">
-            <img src="https://www.designfreelogoonline.com/wp-content/uploads/2014/11/00183-Fruits-Vegetables-logo-design-free-logos-online-02.png">
-          </li>
-           <% if user_signed_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="/products/new">New Vegitables</a>
-          </li>
-             <li class="nav-item">
-            <a class="nav-link " href="/categories">Category</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/products/current-user">Your Products</a>
-          </li>
-          
-           <li class="nav-item">
-            <a class="nav-link" href="/products/">Vegitables</a>
-          </li>
-          
-           <% if current_user.try(:role) == "admin" %>
-          <li class="nav-item">
-            <a class="nav-link" href="/order_delivery_report">Report</a>
-          </li>
-          <% end %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false", style="cursor: pointer;">category
-            </a>
-            <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
-              <% Category.all.each do |f|%>
-              <a href="/category/<%= f.id %>" class="dropdown-item">
-              <%= f.name %><br>
-              </a>
-              <% end %>
-            </div>
-          </li>
-          <%end%>
-        </ul>
-        <div class="col-sm-4 col-md-4 pull-right">
-          <%= form_tag "/products", :method=>"get" do %>
-          <div class="input-group">
-            <%= text_field_tag :search, nil, :placeholder=>"Search for Vegitables", class: 'form-control' %>
-            <button class="btn btn-default input-group-btn" type="submit"><i class="glyphicon glyphicon-search">Search</i></button>
-          </div>
+<title>Vegitable Garden</title>
+<%= csrf_meta_tags %>
+<%#= javascript_include_tag 'jquery.raty.js', "data-turbolinks-track": false %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="/assets/jquery.js" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color navbar-color">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="logo">
+        <a href="/">
+          <img src="https://www.designfreelogoonline.com/wp-content/uploads/2014/11/00183-Fruits-Vegetables-logo-design-free-logos-online-02.png">
+        </a>
+
+      </li>
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/new"><i class="fa fa-plus-square"></i>Vegitables</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/categories">Category</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/current-user"><i class="fa fa-product-hunt"></i>roducts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/products/"><i class="fa fa-shopping-basket"></i>Vegitables</a>
+      </li>
+      <% if current_user.try(:role) == "admin" %>
+      <li class="nav-item">
+        <a class="nav-link" href="/order_delivery_report">Report</a>
+      </li>
+      <% end %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false", style="cursor: pointer;">Category
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
+          <% Category.all.each do |f|%>
+          <a href="/category/<%= f.id %>" class="dropdown-item">
+          <%= f.name %><br>
+          </a>
           <% end %>
         </div>
-        <!--  -->
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-          <!-- <li class="nav-item"> -->
-          <!-- <a class="nav-link" href="/addresses/new"><i class="fa fa-home"></i></a> -->
-          <!-- </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="/wishlist"><i class="fa fa-heart">  </i><span>
-            <% if current_user.present? %><%= current_user.wishlists.count rescue nil %></span>
-            <% end %>
-            </a>
-          </li>
-          <% if user_signed_in? %>
-          <li class="nav-item">
-            <a class="nav-link" href="/cart">
-            <i class="fa fa-shopping-cart"></i><span>
-            <% cart = Cart.where(is_done: false).first %>
-            <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %></span>
-            <% end %>
-            </a>
-          </li>
-          <%end%>
-          <!-- User Authentication -->
-          <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="fas fa-user"> <%= current_user.name %></span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/cart">My Carts</a>
-              <a class="dropdown-item" href="/orders">My Orders</a>
-              <a class="dropdown-item" href="/user_profile">My Profile</a>
-              <a class="dropdown-item" href="/users/sign_out">Sign Out</a>
-              <!-- <a class="dropdown-item" href="#"> <%#= link_to 'Profile',  userpath%></a> -->
-              <!-- <a class="dropdown-item" href="#"><%#= link_to "Logout", destroy_user_session_path, method: :delete %></a> -->
-              <% else %>
-              <div class="dropdown-divider"></div>
-              &nbsp;&nbsp;&nbsp;
-          <li><a class="dropdown-item" href="#"><%= link_to "Login", new_user_session_path %></a></li> 
-          </div> 
-          
-          <% end %>
-
-        </ul>
+      </li>
+      <div class="col-sm-4 col-md-4 pull-right">
+        <%= form_tag "/products", :method=>"get" do %>
+        <div class="input-group">
+          <%= text_field_tag :search, nil, :placeholder=>"Search for Vegitables", class: 'form-control' %>
+          <button class="btn btn-default input-group-btn" type="submit"><i class="glyphicon glyphicon-search">Search</i></button>
+        </div>
+        <% end %>
       </div>
-    </nav>
-    <!--/.Navbar -->
-    <%= yield %>
-    <!-- Footer -->
-    <% if user_signed_in? %>
+      <%end%>
+    </ul>
+    <!--  -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link" href="/wishlist"><i class="fa fa-heart">  </i><span>
+        <% if current_user.present? %><%= current_user.wishlists.count rescue nil %></span>
+        <% end %>
+        </a>
+      </li>
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <a class="nav-link" href="/cart">
+        <i class="fa fa-shopping-cart"></i><span>
+        <% cart = Cart.where(is_done: false).first %>
+        <% if current_user.present? %><%=  current_cart.cart_items.count rescue nil %></span>
+        <% end %>
+        </a>
+      </li>
+      <%end%>
+      <!-- User Authentication -->
+      <% if user_signed_in? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fa fa-user"> <%= current_user.name %></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/cart">My Carts</a>
+          <a class="dropdown-item" href="/orders">My Orders</a>
+          <a class="dropdown-item" href="/user_profile">My Profile</a>
+          <a class="dropdown-item" href="/users/sign_out">Sign Out</a>
+          <% else %>
+          <div class="dropdown-divider"></div>
+          &nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+      <a class="nav-link" href="/users/sign_in"><i class="fa fa-product-hunt"></i>Login</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="/users/sign_up"><i class="fa fa-product-hunt"></i>Sign Up</a>
+      </li>
+      </div>          
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+<%= yield %>
+<!-- Footer -->
+<% if user_signed_in? %>
 <div class="mt-5 pt-5 pb-5 footer">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5 col-xs-12 about-company">
-      <h2>Vegitable Garden</h2>
-      <p class="pr-5 text-white-50"></p>
-    </div>
-    <div class="col-lg-3 col-xs-12 links">
-      <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-xs-12 about-company">
+        <h2>Vegitable Garden</h2>
+        <p class="pr-5 text-white-50"></p>
+      </div>
+      <div class="col-lg-3 col-xs-12 links">
+        <h4 class="mt-lg-0 mt-sm-3">Links</h4>
         <ul class="m-0 p-0">
           <li>- <a href="/about">About Us</a></li>
           <li>- <a href="/contact">Contacts</a></li>
@@ -127,24 +125,26 @@
           <li>- <a href="#">Company Rules</a></li>
           <li>- <a href="#">Developers</a></li>
         </ul>
+      </div>
+      <div class="col-lg-4 col-xs-12 location">
+        <a href="https://www.google.com/maps/dir/Bittern+Technologies,+Sector+2,+Noida,+Uttar+Pradesh//@28.5871857,77.2817309,13z/data=!4m8!4m7!1m5!1m1!1s0x390cfcaa17f85401:0xde4be778659016c3!2m2!1d77.3168364!2d28.5871149!1m0" i class="fa fa-envelope"></i>Get Location</a>
+        <p>B-41, SEC-2 Noida Uttar Pradesh</p>
+        <p class="mb-0"><i class="fa fa-phone mr-3"></i>(+91)9170002122</p>
+        <p class="mb-0"><i class="fa fa-envelope"></i>info@bitterntec.com</p>
+      </div>
     </div>
-    <div class="col-lg-4 col-xs-12 location">
-     <a href="https://www.google.com/maps/dir/Bittern+Technologies,+Sector+2,+Noida,+Uttar+Pradesh//@28.5871857,77.2817309,13z/data=!4m8!4m7!1m5!1m1!1s0x390cfcaa17f85401:0xde4be778659016c3!2m2!1d77.3168364!2d28.5871149!1m0" i class="fa fa-envelope"></i>Get Location</a>
-      <p>B-41, SEC-2 Noida Uttar Pradesh</p>
-      <p class="mb-0"><i class="fa fa-phone mr-3"></i>(+91)9170002122</p>
-      <p class="mb-0"><i class="fa fa-envelope"></i>info@bitterntec.com</p>
+    <div class="row mt-5">
+      <div class="col copyright">
+        <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
+      </div>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col copyright">
-      <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
-    </div>
-  </div>
-</div>
 </div>
 <%end%>
 <style type="text/css">
-
+  @charset "UTF-8";
+  /* CSS Document */
+  @import url('https://fonts.googleapis.com/css?family=Inconsolata|Nunito+Sans|Nunito:800|Pacifico');
   .navbar-color
   {
   background-image: linear-gradient(to right, #ea2525, #19398A);
@@ -152,16 +152,14 @@
   .btn:hover {
   background-position: right center; /* change the direction of the change here */
   }
-
   body{
   cursor: progress;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Pacifico', cursive;
   margin:0;
-}
+  }
   .navbar-dark .navbar-nav .nav-link {
-    color: aliceblue;
-}
- 
+  color: aliceblue;
+  }
   .container {
   display: flex;
   justify-content: center;
@@ -172,18 +170,22 @@
   margin: 0 auto;
   min-height: 100vh;
   }
+  .dropdown-item{
+  border-bottom: double
+  &:hover{color:green}
+  }
   #search {
-    display: block;
-    width: 10%;
-    padding: .375rem .75rem;
-    font-size: x-small;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 1rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: block;
+  width: 10%;
+  padding: .375rem .75rem;
+  font-size: x-small;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 1rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
   .btn {
   /*flex: 1 1 auto;*/
@@ -197,37 +199,37 @@
   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
   box-shadow: 0 0 20px #eee;
   border-radius: 40px;
+  font-size: 10px;
   }
   .footer{
-    height: 100%;
+  height: 100%;
   background: #152F4F;
   color:white;
-  
   .links{
-    ul {list-style-type: none;}
-    li a{
-      color: white;
-      transition: color .2s;
-      &:hover{
-        text-decoration:none;
-        color:#4180CB;
-        }
-    }
+  ul {list-style-type: none;}
+  li a{
+  color: white;
+  transition: color .2s;
+  &:hover{
+  text-decoration:none;
+  color:#4180CB;
+  }
+  }
   }  
   .about-company{
-    i{font-size: 25px;}
-    a{
-      color:white;
-      transition: color .2s;
-      &:hover{color:#4180CB}
-    }
+  i{font-size: 25px;}
+  a{
+  color:white;
+  transition: color .2s;
+  &:hover{color:#4180CB}
+  }
   } 
   .location{
-    i{font-size: 18px;}
+  i{font-size: 18px;}
   }
   .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
-}
-.logo img{
-width: 100px;
-}
+  }
+  .logo img{
+  width: 100px;
+  }
 </style>
