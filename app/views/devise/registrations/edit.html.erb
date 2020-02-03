@@ -1,177 +1,375 @@
-include the above in your HEAD tag ---------->
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Sign Up</title>
-   <!--Made with love by Mutiullah Samim -->
-   
-  <!--Bootsrap 4 CDN-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
-    <!--Fontawesome CDN-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-  <!--Custom styles-->
-  <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-<div class="container">
-  <div class="d-flex justify-content-center h-100">
-    <div class="card">
-      <div class="card-header">
-        <h3>Edit Your Profile</h3>
-      </div>
-      <div class="card-body">
-       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%#= render "devise/shared/error_messages", resource: resource %>
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-at"></i></span>
-            </div>
-             <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "from-control",placeholder: "Email Id" %>
-              </div>
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-key"></i></span>
-            </div>
-              
-             <%= f.password_field :password, autocomplete: "new-password",class: "from-control",placeholder: "New Password" %>
-             <%= f.label :password %>
-             <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-          </div>
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-            </div>
-           <%= f.password_field :password_confirmation, autocomplete: "confirm_password",class: "from-control",placeholder: "Confirm Password" %>
-          </div>
-           <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-          <%= f.text_field :name, autofocus: true,placeholder: "Edit Your Name" %>
-           </div>
-              <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-        <%= f.text_field :phone, autofocus: true,placeholder: "Edit Your Contact" %>
-           </div>
-            <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-            </div>
-          <%= f.text_field :address, autofocus: true,placeholder: "Edit Your Address" %>
-           </div>   
-                 <div class="row align-items-center remember">
-            <div class="radio">
-          <label><input type="radio" name="optradio" checked>Male</label>
-         </div>
-         <div class="radio">
-          <label><input type="radio" name="optradio" checked>Female</label>
-        </div>
-          <div class="form-group">
-            <div class="action">
-            <%= f.submit "Update",class:"btn float-right login_btn" %> 
-            </div>       
-            </div>
-        <%end %>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<style>
- @import url('https://fonts.googleapis.com/css?family=Numans');
 
-html,body{
-background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
+                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+               <%= render "devise/shared/error_messages", resource: resource %>
+              <h1><strong></strong></h1>
+                <div class="col-lg-8 col-md-8 col-xs-12">
+                  <center><h1>Sign Up Here!</h1></center>
+                    <div class="contact-form">
+                        <form id="contact" action="" method="get">
+                          <div class="row">
+                            <%= f.hidden_field :latitude, id:"location_latitude"%>
+                            <%= f.hidden_field :longitude, id:"location_longitude"%>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <%= f.email_field :email,autocomplete: "email",class: "f-control",placeholder: "*Your Email Id"%>
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                  <%= f.text_field :name,placeholder: "*Your Name" %>
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <%= f.text_field :phone,placeholder:"Enter Your Phone Number" %>
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                 <%= f.password_field :password,autocomplete: "new-password", placeholder:"Enter New Password"%>
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                 <%= f.password_field :current_password, required: true,autocomplete: "new-password", placeholder:"Enter Current Password"%>
+                              </fieldset>
+                            </div>
+                             <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <%= f.password_field :password_confirmation, required: true,autocomplete: "new-password",placeholder:"Confirm Your Password"%>
+                              </fieldset>
+                            </div>
+                           
+                          
+                            <div class="col-lg-12">
+                            <div id="locationField">
+                              <input id="autocomplete" name="event[address]" placeholder="Enter your address"/>
+                          </div>
+                          </div>
+                             <table id="address">
+                                  <div class="col-md-6 col-sm-12">
+                                   <fieldset>
+                                    <%= f.text_field :city, placeholder: "Your City", id: "locality" %>
+                                   </fieldset>
+                                 </div>
+                           
+                                <div class="col-md-6 col-sm-12">
+                                   <fieldset>
+                                    <%= f.text_field :state, placeholder: "Your State",id: "state"%>
+                                   </fieldset>
+                                 </div>
+                                 <div class="col-md-3 col-sm-12">
+                                   <fieldset>
+                                    <%= f.text_field :zip_code, placeholder: "Your Portal Code",id: "zipcode"%>
+                                   </fieldset>
+                                 </div>
+                                 <div class="col-md-6 col-sm-12">
+                                   <fieldset>
+                                    <%= f.text_field :country, placeholder: "Your Country",id: "address_line"%>
+                                   </fieldset>
+                                 </div>
+                             
+                            </table>
+                            <div class="col-md-6 col-sm-12">
+                              <ul>
+                              <li>
+                          <center><%= f.submit "Update",class: "btn-hover color-signup" %></center></li>
+                         
+
+                             </div>
+                        </form>
+                      </div>                              
+                     <%end%>
+                                          
+
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk&libraries=places"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.js"></script>
+
+
+<script type="text/javascript">
+  $("#autocomplete").geocomplete().bind("geocode:result", function(event, result){
+    b = result
+    a = result.address_components
+    for ( var i = 0, l = a.length; i < l; i++ ) {
+        if (a[i].types.indexOf('administrative_area_level_2') > -1)
+        {
+          $('#locality').val(a[i].long_name)
+        }
+        if (a[i].types.indexOf("country") > -1)
+        {
+          $('#address_line').val(a[i].long_name)
+        }
+        if (a[i].types.indexOf("postal_code") > -1)
+        {
+          $('#zipcode').val(a[i].long_name)
+        }
+        if (a[i].types.indexOf('administrative_area_level_1') > -1)
+        {
+          $('#state').val(a[i].long_name)
+        }
+    }
+      console.log("Data", result);
+      $("#location_latitude").val(result.geometry.viewport.pa.g)
+      $("#location_longitude").val(result.geometry.viewport.ka.g)
+  });
+// necessary variables
+var mapLeft, mapRight;
+var infoWindowLeft, infoWindowRight;
+
+// markersData variable stores the infation necessary to each marker
+var markersDataLeft = [
+   {
+      lat: 28.5847,
+      lng: 77.3159,
+      name: "Bitterntec company",
+      address1:"sector 2 B41",
+      address2: "Metro station 15 near",
+      postalCode: "201301 Noida sector 2" // don't insert comma in the last item of each marker
+   },
+   {
+      lat: 28.6366,
+      lng: 77.2868,
+      name: "nirman vihar",
+      address1:"nirman vihar Metro station",
+      address2: "nirman vihar sakarpura",
+      postalCode: "110092 Nirman vihar" // don't insert comma in the last item of each marker
+   },
+   {
+      lat: 25.9084,
+      lng: 78.5634,
+      name: "indergarh",
+      address1:"indergarh ward no.9 ",
+      address2: "maa rajrajeshwari",
+      postalCode: "475675 indergarh" // don't insert comma in the last item of each marker
+   } // don't insert comma in the last item
+];
+
+function initialize(setMap) {
+  var mapOptions;
+    if(setMap == "mapLeft") {
+          mapOptions = {
+          center: new google.maps.LatLng(28.7041,77.1025),
+          zoom: 11,
+          mapTypeId: 'roadmap',
+        };
+
+        mapLeft = new google.maps.Map(document.getElementById('map-canvas-left'), mapOptions);
+
+       // a new Info Window is created
+        infoWindowLeft = new google.maps.InfoWindow();
+
+      // Event that closes the Info Window with a click on the map
+        google.maps.event.addListener(mapLeft, 'click', function() {
+          infoWindowLeft.close();
+        });
+
+    }
+    else {
+
+        mapOptions = {
+        center: new google.maps.LatLng(28.7041,77.1025),
+        zoom: 9,
+        mapTypeId: 'roadmap',
+      };
+
+        mapRight = new google.maps.Map(document.getElementById('map-canvas-right'), mapOptions);
+
+       // a new Info Window is created
+       infoWindowRight = new google.maps.InfoWindow();
+
+       // Event that closes the Info Window with a click on the map
+       google.maps.event.addListener(mapRight, 'click', function() {
+          infoWindowRight.close();
+      });
+    }
+
+     // Finally displayMarkers() function is called to begin the markers creation
+     displayMarkers(setMap);
+
+   // Create second map only when initialize function is called for the first time.
+   // Second time setMap is equal to mapRight, so this condition returns false and it will not run
+    if(setMap == "mapLeft"){
+      initialize("mapRight");
+   }
+}
+    google.maps.event.addDomListener(window, 'load', function(){ initialize("mapLeft") });
+
+
+// This function will iterate over markersData array
+// creating markers with createMarker function
+function displayMarkers(setMap){
+
+   var markersData;
+   var map;
+
+   if(setMap == "mapLeft"){
+      markersData = markersDataLeft;
+      map = mapLeft;
+   }
+
+   // this variable sets the map bounds according to markers position
+   var bounds = new google.maps.LatLngBounds();
+
+   // for loop traverses markersData array calling createMarker function for each marker
+   for (var i = 0; i < markersData.length; i++){
+
+      var latlng = new google.maps.LatLng(markersData[i].lat, markersData[i].lng);
+      var name = markersData[i].name;
+      var address1 = markersData[i].address1;
+      var address2 = markersData[i].address2;
+      var postalCode = markersData[i].postalCode;
+
+      createMarker(setMap, latlng, name, address1, address2, postalCode);
+
+      // marker position is added to bounds variable
+      bounds.extend(latlng);
+   }
+
+   // Finally the bounds variable is used to set the map bounds
+   // with fitBounds() function
+   map.fitBounds(bounds);
 }
 
-.container{
-height: 100%;
-align-content: center;
+// This function creates each marker and it sets their Info Window content
+function createMarker(setMap, latlng, name, address1, address2, postalCode){
+     var map;
+     var infoWindow;
+
+     if(setMap == "mapLeft"){
+        map = mapLeft;
+        infoWindow = infoWindowLeft;
+     } else {
+        map = mapRight;
+        infoWindow = infoWindowRight;
+     }
+
+     var marker = new google.maps.Marker({
+        map: map,
+        position: latlng,
+        title: name
+     });
+
+   // This event expects a click on a marker
+   // When this event is fired the Info Window content is created
+   // and the Info Window is opened.
+    google.maps.event.addListener(marker, 'click', function() {
+
+      // Creating the content to be inserted in the infowindow
+      var iwContent = '<div id="iw_container">' +
+            '<div class="iw_title">' + name + '</div>' +
+            '<div class="iw_content">' + address1 + '<br />' + address2 + '<br />' +postalCode + '</div></div>';
+
+        // including content to the Info Window.
+        infoWindow.setContent(iwContent);
+
+        // opening the Info Window in the current map and at the current marker location.
+        infoWindow.open(map, marker);
+   });
 }
 
-.card{
-height: 500px;
-margin-top: auto;
-margin-bottom: auto;
-width: 600px;
-background-color: rgba(0,0,0,0.5) !important;
+</script>
+<style type="text/css">
+  
+  .buttons {
+  margin: 10%;
+  text-align: center;
+  }
+  .btn-hover {
+  width: 150px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  }
+  .btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  }
+  .btn-hover:focus {
+  outline: none;
+  }
+  .btn-hover.color-signup {
+  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+  }
+  #contact-us .section-heading {
+  margin-bottom: 50px;
+}
+.row {
+   margin-top: 20px;
+    margin-right: -15px;
+    margin-left: 200px;
 }
 
-.social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
+#contact-us .section-heading h6 {
+  color: #5fb759;
 }
 
-.social_icon span:hover{
-color: white;
-cursor: pointer;
+#contact-us .left-text-content ul li {
+  margin-bottom: 30px;
 }
 
-.card-header h3{
-color: white;
+#contact-us .left-text-content ul li {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
+#contact-us .left-text-content ul li img {
+  margin-right: 15px;
 }
 
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
+#contact-us {
+  padding: 120px 0px;
+  background-image: url(../images/dotted-map-bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
-
+#contact {
+  margin-top: 40px;
 }
 
-.remember{
-color: white;
+.contact-form input,
+.contact-form textarea {
+  color: #7a7a7a;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 100%;
+  height: 36px;
+  outline: none;
+  padding-top: 5px;
+  padding-left: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-bottom: 30px;
 }
 
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
+.contact-form textarea {
+  height: 150px;
+  resize: none;
+  padding: 20px;
 }
 
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
 
-.login_btn:hover{
-color: black;
-background-color: white;
-}
-
-.links{
-color: white;
-}
-
-.links a{
-margin-left: 4px;
-}
 </style>
-</body>
-</html>
+
