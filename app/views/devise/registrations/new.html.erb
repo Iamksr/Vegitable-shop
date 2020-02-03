@@ -106,8 +106,8 @@
         }
     }
       console.log("Data", result);
-      $("#location_latitude").val(result.geometry.viewport.pa.g)
-      $("#location_longitude").val(result.geometry.viewport.ka.g)
+      $("#location_latitude").val(result.geometry.viewport.Ta.g)
+      $("#location_longitude").val(result.geometry.viewport.Ya.g)
   });
 // necessary variables
 var mapLeft, mapRight;
@@ -267,7 +267,10 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
 </script>
 <style type="text/css">
   body{
-    background-image: url("https://cdn.pixabay.com/photo/2018/05/25/16/43/cube-sea-3429485_960_720.jpg");
+    background-color: #ff4e00;
+    background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+
+
 
   }
   .buttons {
@@ -275,7 +278,7 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
   text-align: center;
   }
   .btn-hover {
-  width: 150px;
+  width: 50px;
   font-size: 16px;
   font-weight: 500;
   color: #fff;
@@ -302,7 +305,8 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
   outline: none;
   }
   .btn-hover.color-signup {
-  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+  background-color: #ff4e00;
+    background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
   box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
   }
   #contact-us .section-heading {
