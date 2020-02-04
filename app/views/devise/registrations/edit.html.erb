@@ -85,7 +85,6 @@
                                           
 
 
-
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk&libraries=places"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.js"></script>
 
@@ -113,8 +112,8 @@
         }
     }
       console.log("Data", result);
-      $("#location_latitude").val(result.geometry.viewport.Ta.g)
-      $("#location_longitude").val(result.geometry.viewport.Ya.g)
+      $("#location_latitude").val(result.geometry.viewport.Ya.g)
+      $("#location_longitude").val(result.geometry.viewport.Ta.g)
   });
 // necessary variables
 var mapLeft, mapRight;
@@ -270,7 +269,6 @@ function createMarker(setMap, latlng, name, address1, address2, postalCode){
         infoWindow.open(map, marker);
    });
 }
-
 </script>
 <style type="text/css">
   
