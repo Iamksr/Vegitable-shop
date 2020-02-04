@@ -1,20 +1,10 @@
-class ApplicationController < ActionController::Base
-
-
-  def current_cart
-    if current_user.present?
-      return Cart.find_or_create_by(user_id: current_user.id, is_done: false)
-      # return Cart.find_or_create_by(user_id: current_user.id)
-    end
-  end
+class ApplicationController < ActionController::Base  
   helper_method :current_cart
-  # ===================================
-
-  protect_from_forgery with: :exception
+  before_action :authenticate_user!
+   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :user_admin, expect:[:after_sign_in_path_for]
   include ApplicationHelper
   layout :set_layout
-  before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :check_subscription
   def after_sign_in_path_for(resource)
     resource.is_admin? ? admin_root_path : root_path
@@ -42,14 +32,21 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def current_cart
+    if current_user.present?
+      return Cart.find_or_create_by(user_id: current_user.id, is_done: false)
+      # return Cart.find_or_create_by(user_id: current_user.id)
+    end
+  end
+
   protected   
     def configure_permitted_parameters  
       devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-        user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id)
+      user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id)
     end
       devise_parameter_sanitizer.permit(:account_update) do |user_params|
       user_params.permit({ roles: [] }, :email, :password, :password_confirmation,:name, :gender,:phone, :image, :address,:current_password, :is_active, :is_admin, :city, :state, :zip_code, :latitude, :longitude, :country, :product_id)
-    end
   end
   
+end
 end
