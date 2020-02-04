@@ -103,7 +103,12 @@
     </ul>
   </div>
 </nav>
-<!--/.Navbar -->
+ <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+     <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
 <%= yield %>
 <!-- Footer -->
 <% if user_signed_in? %>
