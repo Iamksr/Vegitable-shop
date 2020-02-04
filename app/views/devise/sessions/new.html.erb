@@ -1,145 +1,30 @@
-
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login Page</title>
-   <!--Made with love by Mutiullah Samim -->
-   
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-</head>
-<body>
-<div class="container">
-  <div class="d-flex justify-content-center h-100">
-    <div class="card">
-      <div class="card-header">
-        <h3>Vegitable Garden</h3>
-        <div class="d-flex justify-content-end social_icon">
-        </div>
-      </div>
-      <div class="card-body">
-         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="input-group form-group">
-            <div class="input-group-prepend">              
-              <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div>
-         <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control",placeholder: "Email Id"%>            
-          </div>
-          <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-key"></i></span>
-            </div>
-           <%= f.password_field :password, autocomplete: "current-password",class:"form-control",placeholder: "Password" %>
-          </div>
-            <% if devise_mapping.rememberable? %>
-            <div class="row align-items-center remember">
-              <div class="field">
-               <%= f.check_box :remember_me %>
-               <%= f.label :remember_me %>
-             </div>
-              </div>
-             <%end %>
-          <div class="form-group">
-            <div class="action">
-            <%= f.submit "Log in",class:"btn float-right login_btn" %> 
-            </div>       
+<h1><strong>Log in</h1></strong>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name),html: {class: "form-horizontal" }) do |f| %>
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Email:</label>
+   <div class="col-sm-7">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control"%>
   </div>
-        <%end %>
-      </div>
-      <div class="card-footer">
-        <div class="d-flex justify-content-center links">
-          Don't have an account?<a href="/users/sign_up">Sign Up</a>
-        </div>
-        <div class="d-flex justify-content-center">
-          <a href="/users/password/new">Forgot your password?</a>
-        </div>
-      </div>
-    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Password:</label>
+   <div class="col-sm-7">
+    <%= f.password_field :password, autocomplete: "current-password",class: "form-control" %>
   </div>
 </div>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Numans');
+  <% if devise_mapping.rememberable? %>
+     <div class="form-group">
+    <label class="control-label col-sm-2" for="pwd">Remeber me:</label>
+   <div class="col-sm-1">
+      <%= f.check_box :remember_me %>
+    </div>
+  </div>
+  <% end %>
 
-html,body{
-background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-}
+  <div class="actions">
+    <%= f.submit "Log in",class: "btn-hover color-login" %>
+  </div>
+<% end %>
 
-.container{
-height: 100%;
-align-content: center;
-}
-
-.card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
-}
-
-.social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
-}
-
-.social_icon span:hover{
-color: white;
-cursor: pointer;
-}
-
-.card-header h3{
-color: white;
-}
-
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
-}
-
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
-}
-
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
-
-}
-
-.remember{
-color: white;
-}
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
-
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
-
-.login_btn:hover{
-color: black;
-background-color: white;
-}
-
-</style>
-</body>
-</html>
+<%= render "devise/shared/links" %>
