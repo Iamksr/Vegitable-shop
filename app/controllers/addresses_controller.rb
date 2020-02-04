@@ -41,15 +41,6 @@ class AddressesController < ApplicationController
       end
     end
   end
-# def country_select
-#     @states = CS.states(params[:country_code])
-#     respond_to do |format|
-#           format.js {  }
-#       end
-#   end
-  
-  # PATCH/PUT /addresses/1
-  # PATCH/PUT /addresses/1.json
   def update
     respond_to do |format|
       if @address.update(address_params)
@@ -61,9 +52,6 @@ class AddressesController < ApplicationController
       end
     end
   end
-
-  # DELETE /addresses/1
-  # DELETE /addresses/1.json
   def destroy
     @address.destroy
     respond_to do |format|
