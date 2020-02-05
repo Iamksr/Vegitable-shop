@@ -1,15 +1,74 @@
-<h1>Chatting with <%= @conversation.with(current_user).name %></h1>
+<center><h2>You Are Connected with <%= @conversation.with(current_user).name %></h2></center>
 
 <div id="conversation-main">
   <div id="conversation-body">
+
     <%= render @conversation.personal_messages %>
   </div>
 
   <%= form_for @personal_message do |f| %>
     <%= hidden_field_tag 'conversation_id', @conversation.id %>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
+    <div class="col-sm-6">
 
-    <%= f.submit %>
+    <%= f.text_area :body,class: "form-control", placeholder: "Enter Your Message......." %>
+ </div>
+   <center><%= f.submit "Send",class: "btn-hover color-login" %></center>
   <% end %>
 </div>
+<style type="text/css">
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.col-sm-6{
+	margin-left: 29%;
+}
+.form-control{
+	    background-color: #0000008a;
+}
+
+h2 {
+
+      font-size: 2.1em;
+      font-weight: 500;
+      background: linear-gradient(to right, #d01686 0%, #330867 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+ 
+}
+.btn-hover {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-login {
+    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+    box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
+</style>

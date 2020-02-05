@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @products.each do |product| %>
+    <% @product.each do |product| %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
@@ -29,9 +29,9 @@
     <% end %>
   </tbody>
 </table>
- <center class="digg_pagination">
-  <%= will_paginate @products %>
-</center>
+ <!-- <center class="digg_pagination">
+  <%#= will_paginate @product %>
+</center> -->
 <br>
 
 

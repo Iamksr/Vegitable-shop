@@ -7,6 +7,9 @@ class ProductsController < ApplicationController
   def current_user_product
     @products = current_user.products.paginate(page: params[:page], per_page: 4)
   end
+  def all_product
+    @product = current_user.products
+  end
   # GET /products
   # GET /products.json
   def index
@@ -125,15 +128,15 @@ def add_to_cart
   # GET /products/1/edit
   def edit
   end
+
    def remove_cart
     @product = Product.friendly.find(params[:id])
-    @remove_cart = current_cart.cart_items.where(product_id: @product.id).first.destroy
+    @remove_cart = current_cart.cart_items.where(product_id: @product.id).first.destroy if current_cart.cart_items.present?
     redirect_to "/cart"
   end
   def remove_wishlist
-  
     @product = Product.friendly.find(params[:id])
-     @remove_wishlist = current_user.wishlists.where(product_id: @product.id).first.destroy
+     @remove_wishlist = current_user.wishlists.where(product_id: @product.id).first.destroy if current_user.wishlists.present?
     redirect_to "/wishlist"
   end
   # POST /products

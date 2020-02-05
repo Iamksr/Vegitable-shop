@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  acts_as_paranoid
   belongs_to :user
 	 belongs_to :category
 	  # validates_presence_of :title

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # get 'user_product' => "products#user_product"
   get 'products/user/:id' => "products#user_product"
   get 'products/current-user' => "products#current_user_product"
+  get 'product_all' => "products#all_product"
 
    root 'welcome#about'
   # resources :orders
@@ -81,4 +82,5 @@ get '/product/:id' => "products#show"
 
  post 'order' => "orders#all_order_show"
   get 'orders_history' => "orders#index"
+  get 'terms' => "welcome#terms"
 end
