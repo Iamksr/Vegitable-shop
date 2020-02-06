@@ -1,45 +1,27 @@
 <%= form_for @personal_message do |f| %>
-<div class="col-lg-8 col-md-8 col-xs-12">
-<h1>New message to <%= @receiver.name%></h1>
- <div class="contact-form">
-     <form id="contact" action="" method="get">
-       <div class="row">
-       	 <%= hidden_field_tag 'receiver_id', @receiver.id %>
-          <div class="col-md-10 col-sm-12">
-        <fieldset><%= f.text_area :body,class: "f-control",placeholder: "*Enter Your Messages"%></fieldset>
-         </div>
-        <%= f.submit "Update",class:"signup" %> 
-        </div>
-        </form> 
-      </div>
-    </div>
-    <%end%>
-    <script type="text/javascript">
-$(document).ready(function() {           
-    $('input').attr('required', true); 
-  });
-</script>
-    <style type="text/css">
-    	.signup{
-    margin-top: 10px;
-    border: 1px solid #fff;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-    transition: 1s ease;
-    background-color: transparent;
-    cursor: pointer;
+<center>
+  <h2>New message to <%= @receiver.name%></h2>
+</center>
+<%= hidden_field_tag 'receiver_id', @receiver.id %>
+<div class="col-sm-6">
+  <%= f.text_area :body,class: "form-control", placeholder: "Enter Your Message......." %>
+  <center><%= f.submit "Send",class: "btn-hover color-login" %></center>
+</div>
+<%end%>
+<style type="text/css">
+  .form-control{
+  background-color: #0000008a;
   }
-  .signup:hover{
-    background-color: #fff;
-    color: #000;
-    cursor: 
-   }
-  body{
-    
-
+  .col-sm-6{
+  margin-left: 29%;
   }
-
+  h2 {
+  font-size: 2.1em;
+  font-weight: 600;
+  background: linear-gradient(to right, #d01686 0%, #330867 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
   .btn-hover {
   width: 150px;
   font-size: 16px;
@@ -67,74 +49,8 @@ $(document).ready(function() {
   .btn-hover:focus {
   outline: none;
   }
-  .btn-hover.color-signup {
-  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
-  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+  .btn-hover.color-login {
+  background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+  box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
   }
-  #contact-us .section-heading {
-  margin-bottom: 50px;
-}
-.row {
-   margin-top: 20px;
-    margin-right: -15px;
-    margin-left: 200px;
-}
-
-#contact-us .section-heading h6 {
-  color: #5fb759;
-}
-
-#contact-us .left-text-content ul li {
-  margin-bottom: 30px;
-}
-
-#contact-us .left-text-content ul li {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-#contact-us .left-text-content ul li img {
-  margin-right: 15px;
-}
-
-#contact-us {
-  padding: 120px 0px;
-  background-image: url(../images/dotted-map-bg.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-#contact {
-  margin-top: 40px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  color: #7a7a7a;
-  font-size: 15px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  width: 100%;
-  height: 36px;
-  outline: none;
-  padding-top: 5px;
-  padding-left: 40px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin-bottom: 30px;
-}
-
-.contact-form textarea {
-  height: 150px;
-  resize: none;
-  padding: 20px;
-}
-
-    </style>
-
-
-
-
-
+</style>
