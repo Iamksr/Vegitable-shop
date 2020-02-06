@@ -10,8 +10,12 @@
             <div class="product-grid4">
                 <div class="product-image4">
                     <a href="#">
+
+                      <% if product.image_url.present? %>
                       <%= image_tag(product.image_url, :size => "160x180") %>
-                        
+                      <%else%>
+                      <img src="https://i7.pngguru.com/preview/419/969/249/desktop-wallpaper-vegetable-basket-4k-resolution-8k-resolution-vegetable.jpg">
+                      <%end%>
                     </a>
                     <ul class="social">
                         <li><a href="/products/<%= product.friendly_id%>" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
