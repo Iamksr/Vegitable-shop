@@ -72,7 +72,7 @@ element.style {
             map.setZoom(5);
         });
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
+      zoom: 15,
       center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });

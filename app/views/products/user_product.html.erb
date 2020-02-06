@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<br><br><br>
 <div class="container">
-    <h3 class="h3">Your Shop </h3>
+    <h5><%=User.where(id: params[:id]).first.name
+%>'s Shop </h5>
     <div class="row">
        <% @products.each do |product| %>
+
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
                 <div class="product-image4">
@@ -18,6 +19,7 @@
                         <!-- <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li> -->
                     </ul>
                     <span class="product-new-label">New</span>
+                     <span class="product-discount-label"><%= product.discount_percentage.to_f.round(2)%>%</span>
                 </div>
                 <div class="product-content">
                      <h3 style="min-height: 100px !important;"><%= product.name %></h3>
@@ -33,10 +35,26 @@
     </div>
 </div>
 <style type="text/css">
-  body{
+  @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+  body {
+   font-family: 'Poppins', sans-serif;
   background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
 }
-  product-grid4,.product-grid4 .product-image4{position:relative}
+h5{
+  font-size: 3.4em;
+  font-weight: 600;
+   background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent
+}
+h3    {
+      font-size: 2.1em;
+      font-weight: 600;
+     background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+.product-grid4,.product-grid4 .product-image4{position:relative}
 .product-grid4{font-family:Poppins,sans-serif;text-align:center;border-radius:5px;overflow:hidden;z-index:1;transition:all .3s ease 0s}
 .product-grid4:hover{box-shadow:0 0 10px rgba(0,0,0,.2)}
 .product-grid4 .product-image4 a{display:block}
@@ -63,13 +81,25 @@
 .product-grid4 .title{font-size:15px;font-weight:400;text-transform:capitalize;margin:0 0 7px;transition:all .3s ease 0s}
 .product-grid4 .title a{color:#222}
 .product-grid4 .title a:hover{color:#16a085}
-.product-grid4 .price{color:#16a085;font-size:17px;font-weight:700;margin:0 2px 15px 0;display:block}
+.product-grid4 .price{color: #9de612fa;font-size:17px;font-weight:700;margin:0 2px 15px 0;display:block}
 .product-grid4 .price span{color:#909090;font-size:13px;font-weight:400;letter-spacing:0;text-decoration:line-through;text-align:left;vertical-align:middle;display:inline-block}
-.product-grid4 .add-to-cart{border:1px solid #e5e5e5;display:inline-block;padding:10px 20px;color:#888;font-weight:600;font-size:14px;border-radius:4px;transition:all .3s}
-.product-grid4:hover .add-to-cart{border:1px solid transparent;background:#16a085;color:#fff}
-.product-grid4 .add-to-cart:hover{background-color:#505050;box-shadow:0 0 10px rgba(0,0,0,.5)}
+.product-grid4 .add-to-cart{border:1px solid #e5e5e5;display:inline-block;padding:10px 20px;color:#fff;font-weight:600;font-size:14px;border-radius:4px;transition:all .3s}
+.product-grid4:hover .add-to-cart{border:1px solid transparent;background:#16a085;color:#fff;text-decoration: none}
+.product-grid4 .add-to-cart:hover{background-color:#fff;color:#000;box-shadow:0 0 10px rgba(0,0,0,.5)}
 @media only screen and (max-width:990px){.product-grid4{margin-bottom:30px}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    margin: 0 auto;
+    min-height: 100vh;
 }
+}
+
+</style>
 
 </style>
 </style>
