@@ -28,6 +28,12 @@
         <tr>
           <td><%= cart_item.product.name %></td>
           <td><%= cart_item.product.description %></td>
+          <% if cart_item.product.image_url.present? %>
+          <td><%= image_tag(cart_item.product.image_url, :size => "160x130") %></td>
+            <%else%>
+          <td><img src="https://i7.pngguru.com/preview/419/969/249/desktop-wallpaper-vegetable-basket-4k-resolution-8k-resolution-vegetable.jpg"></td>
+             <%end%>
+          
           <td><%= cart_item.product.category.name %></td>
           <td>
             <%#byebug%>

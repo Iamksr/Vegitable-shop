@@ -27,6 +27,11 @@
         <td><%= product.name %></td>
         <td><%= product.description %></td>
         <td><%= product.price %></td>
+        <% if product.image_url.present? %>
+        <td><a href="/product/<%= product.id %>"><%= image_tag(product.image_url, :size => "260x180") %></td>
+          <%else%>
+          <td><img src="https://i7.pngguru.com/preview/419/969/249/desktop-wallpaper-vegetable-basket-4k-resolution-8k-resolution-vegetable.jpg"></td>
+          <%end%>
          <td><%= link_to "Remove", remove_wishlist_path(product), data: {method: :delete},class: 'btn btn-danger'  %>
         </td>
       </tr>
