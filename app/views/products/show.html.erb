@@ -1,88 +1,77 @@
+<body>
+<div class="container">
+<div class="banner">
+  <h1><%= @product.name%></h1>
+  <h2><%= @product.description%></h2>
+  <h3>Price:₹<bold><%= @product.price%></bold>
+    <s>₹<%= @product.full_price%></s></h3><br><br><br><br>
+    <a class="btns" href="/products/<%= @product.id %>/cart"><span>Add to Cart</span></a>
+    <a class="buy" href="/charges/new"><span>Buy Now</span></a>
+</div>
+ <div class="picture">
+   <%= image_tag(@product.image_url, :size => "360x380") %>     
+   </div>
+ </div>
+]
 
-  <div class="container">
-    <div class="card">
-      <div class="container-fliud">
-        <div class="wrapper row">
-          <div class="preview col-md-6">
-            <div class="preview-pic tab-content">
-              <div class="img-hover-zoom">
-                <%= image_tag(@product.image_url, :size => "400x320") %>
-                </div>
-            </div>
-            
-          </div>
-          <div class="details col-md-5">
-            <h3 class="product-title"><strong><%= @product.name %></strong></h3>
-            <div class='star-rating' data-score="<%= @avg_rating %>"></div>
-                <strong><%= "#{@reviews.try(:size)} reviews" %></strong>
-            <!-- h3 class="product-title">men's shoes fashion</h3> -->
-            <!-- <h3 class="product-title"><strong><%#= @product.name%></strong></h3> -->
-            <p class="product-description"><%= @product.description%></p>
-            <h4 class="price">
-              ₹<bold><%= @product.price%></bold>
-              <s>₹<%= @product.full_price%></s>
-              </h4>
-            <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>         
-            <div class="action">
-              <ul>
-               <a class="buynow-btn" href="#"><span>Add to Cart</span></a></li>
-                <li><a class="buynow-btn" href="/products/<%= @product.id %>/cart"><span>Add to Cart</span></a>
-
-                </ul>
-      </div>
-            
-             <!--  <a href="/products/<%= @product.id %>/wishlist" data-tip="Add to Wishlist"><strong><i class="fa fa-shopping-cart"></strong></i></a></li> -->
-              <br><br>
-                <% if user_signed_in? %>
-                <% if current_user.role == "admin" %>
-        <td><%= link_to 'Edit', edit_product_path(@product),class: "btn btn--green btn--strokes btn--stroke--2 px24 py12 txt-s round-full px37" %></td>
-        <% end %>
-              <% @reviews.each do |review|%>
-                <div class='star-rating' data-score="<%= review.rating %>"></div><br>
-                <%= review.review %>
-                <h6><%= review.user.name %></h6><hr>
-               <% end %>
-              <% end %>
-              <script type="text/javascript" src="app/assets/javascripts/jquery.raty.js"></script>
-              <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
-               <script>
-                    $('.star-rating').raty({
-                      path: '/assets/',
-                      readOnly: true,
-                      score: function() {
-                        return $(this).attr('data-score');
-                      }
-                    });
-                  
-                </script>
-           </div>
-          </div>
-        </div>
-      </div>
-    </div>
+</body>
 <style type="text/css">
-  /*# sourceMappingURL=style.css.map */
+   @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+  *{
+    
+    font-family: 'sans-serif' ;
+  }
+  h1{
+     font-family: 'Poppins', sans-serif;
+      font-size: 5.1em;
+      font-weight: 500;
+      background: -webkit-linear-gradient(315deg, #F53803 10%, #F5D020 74%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-color: #9fa4c4;
 
-  body{
-  position: relative;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.7686274509803922), rgba(255, 255, 255, 0.7686274509803922)), url("https://images3.alphacoders.com/103/thumb-1920-1038304.jpg") no-repeat center center fixed;
-    background-size: cover;
+  }
+  h2{
+    font-family: 'Poppins', sans-serif;
+      font-size: 2.1em;
+  }
+  h3{
+     font-family: 'Poppins', sans-serif;
+     font-size: 2.1em;
+     color: #3aff3a;
+  }
+  .picture{
+   top: 40%;
+    left: 70%;
+    margin-top: -20px;
+    padding-left: 60%;
   }
 
-.buynow-btn{
-  position: absolute;
-  text-decoration:none;
-  color: #fff;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  background-image: linear-gradient(#42455a,#42455a),radial-gradient(circle at top left,#fd00da,#19d7f8);
-  background-origin: border-box;
-  background-clip: content-box,border-box;
-}
-.buynow-btn span{
-  display: block;
-  padding: 8px 22px;
-}
-
-
-  </style>
+  .btns{
+    margin top: 10px;
+  border: 2px solid red;
+   padding: 10px 30px;
+   color: red;   
+   border-radius: 10px;
+   text-decoration: none;
+   transform: 2.4s ease;
+  }
+  .btns:hover{
+    text-decoration: none;
+    background-color: red;
+    color: #000;
+  }
+  .container{
+    width: 100%;
+    height: 100%;
+    /*background: #42455a;*/
+  }
+  .banner{
+    width: 70%;
+    height: 70%;
+    top: 35%;
+    left: 130px;
+    position: absolute;
+    color: #fff;
+  }
+</style>

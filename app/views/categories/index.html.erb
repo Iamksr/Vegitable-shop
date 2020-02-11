@@ -12,7 +12,7 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= link_to 'Show', category,class: "btn btn-primary"%></td>
+        <td><%#= link_to 'Show', category,class: "signup"%></td>
         <% if current_user.role == "admin" %>
         <td><%= link_to 'Edit', edit_category_path(category),class: "btn btn-info" %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
@@ -26,24 +26,22 @@
 <br>
 
  <center>
-  <a href="/categories/new" class="signup-btn"><span>Add Category</span></a>
+  <a href="/categories/new" class="signup"><span>Add Category</span></a>
      </center> </div>
 
 <style type="text/css">
-
-  .signup-btn{
-    position: absolute;
-    text-decoration: none;
-    color: blue
-    border: 2px solid transparent;
-    border-radius: 20px;
-   background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
-  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
-    background-origin: border-box;
-    background-clip: content-box,border-box;
-  }
-  .signup-btn span{
-    display: block;
-    padding: 8px 22px;
-  }
+.signup{
+   border: 1px solid #fff;
+   padding: 10px 30px;
+   color: #fff;   
+   border-radius: 10px;
+   text-decoration: none;
+   transform: 2.4s ease;
+}
+.signup:hover{
+  text-decoration: none;
+  color: #000;
+  background-color: #fff;
+}
+  
 </style>

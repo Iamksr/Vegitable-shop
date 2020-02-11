@@ -22,7 +22,7 @@
                         <li><a href="/products/<%= product.id %>/wishlist" data-tip="Add to Wishlist"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                     <span class="product-new-label">New</span>
-                    <span class="product-discount-label"><%= product.discount_percentage%></span>
+                    <span class="product-discount-label"><%= product.discount_percentage.to_f.round(2)%>%</span>
                 </div>
                 <div class="product-content">
                      <h3 style="min-height: 100px !important;"><%= product.name %></h3>

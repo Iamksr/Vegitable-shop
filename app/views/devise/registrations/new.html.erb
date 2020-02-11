@@ -20,46 +20,46 @@
                             </div>
                             <div class="col-md-6 col-sm-12">
                               <fieldset>
-                                <%= f.text_field :phone, required: true, placeholder:"Enter Your Phone Number" %>
+                                <%= f.text_field :phone, required: true, placeholder:"*Enter Your Phone Number" %>
                               </fieldset>
                             </div>
                             <div class="col-md-6 col-sm-12">
                               <fieldset>
-                                 <%= f.password_field :password, required: true,autocomplete: "new-password", placeholder:"Enter New Password"%>
+                                 <%= f.password_field :password, required: true,autocomplete: "new-password", placeholder:"*Enter New Password"%>
                               </fieldset>
                             </div>
                              <div class="col-md-6 col-sm-12">
                               <fieldset>
-                                <%= f.password_field :password_confirmation, required: true,autocomplete: "new-password",placeholder:"Confirm Your Password"%>
+                                <%= f.password_field :password_confirmation, required: true,autocomplete: "new-password",placeholder:"*Confirm Your Password"%>
                               </fieldset>
                             </div>
                            
                           
                             <div class="col-lg-12">
                             <div id="locationField">
-                              <input id="autocomplete" name="event[address]" placeholder="Enter your address", required= "true"  />
+                              <input id="autocomplete" name="event[address]" placeholder="*Enter your address", required= "true"  />
                           </div>
                           </div>
                              <table id="address">
                                   <div class="col-md-6 col-sm-12">
                                    <fieldset>
-                                    <%= f.text_field :city, placeholder: "Your City", id: "locality" %>
+                                    <%= f.text_field :city, placeholder: "*Your City", id: "locality" %>
                                    </fieldset>
                                  </div>
                            
                                 <div class="col-md-6 col-sm-12">
                                    <fieldset>
-                                    <%= f.text_field :state, placeholder: "Your State",id: "state"%>
+                                    <%= f.text_field :state, placeholder: "*Your State",id: "state"%>
                                    </fieldset>
                                  </div>
                                  <div class="col-md-3 col-sm-12">
                                    <fieldset>
-                                    <%= f.text_field :zip_code, placeholder: "Your Portal Code",id: "zipcode"%>
+                                    <%= f.text_field :zip_code, placeholder: "*Pin Code",id: "zipcode"%>
                                    </fieldset>
                                  </div>
                                  <div class="col-md-6 col-sm-12">
                                    <fieldset>
-                                    <%= f.text_field :country, placeholder: "Your Country",id: "address_line"%>
+                                    <%= f.text_field :country, placeholder: "*Your Country",id: "address_line"%>
                                    </fieldset>
                                  </div>
                              

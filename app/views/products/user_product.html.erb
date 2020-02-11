@@ -2,7 +2,7 @@
 
 <div class="container">
     <h5><%=User.where(id: params[:id]).first.name
-%>'s Shop </h5>
+%>s Shop </h5>
     <div class="row">
        <% @products.each do |product| %>
 

@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   def current_user_product
     @products = current_user.products.paginate(page: params[:page], per_page: 4)
   end
-  def all_product
+  def product_all
     @product = current_user.products
   end
   # GET /products
