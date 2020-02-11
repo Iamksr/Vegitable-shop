@@ -16,7 +16,11 @@
   <% end %>
 </div>
  <div class="picture">
-   <%= image_tag(@product.image_url, :size => "360x380") %>     
+    <% if @product.image_url.present? %>
+   <%= image_tag(@product.image_url, :size => "360x380") %>  
+   <%else%>  
+   <img src="https://i7.pngguru.com/preview/419/969/249/desktop-wallpaper-vegetable-basket-4k-resolution-8k-resolution-vegetable.jpg"> 
+   <%end%>
    </div>
  </div>
 
@@ -52,7 +56,9 @@
     margin-top: -20px;
     padding-left: 60%;
   }
-
+img {
+  width: 100%;
+}
   .btns{
     margin top: 10px;
   border: 2px solid #06ea06;
