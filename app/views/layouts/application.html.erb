@@ -15,21 +15,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
-      <li class="logo">
-        <a href="/">
-          <img src="https://www.designfreelogoonline.com/wp-content/uploads/2014/11/00183-Fruits-Vegetables-logo-design-free-logos-online-02.png">
-        </a>
-      </li>
       <% if user_signed_in? %>
+       <li class="nav-item">
+        <a class="nav-link" href="/products/current-user"><i class="fa fa-home"></i>Products</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/products/new"><i class="fa fa-plus-square"></i>Vegetables</a>
       </li>
       <li class="nav-item">
         <a class="nav-link " href="/categories">Category</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/products/current-user"><i class="fa fa-product-hunt"></i>Products</a>
-      </li>
+     
       <li class="nav-item">
         <a class="nav-link" href="/products/"><i class="fa fa-shopping-basket"></i>Vegetables</a>
       </li>
@@ -42,7 +38,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false", style="cursor: pointer;">Category
         </a>
-        <div class="dropdown-menu dropdown-default" aria-labelledby="             navbarDropdownMenuLink-333">
+        <div class="dropdown-menu dropdown-default" aria-labelledby= "navbarDropdownMenuLink-333">
           <% Category.all.each do |f|%>
           <a href="/category/<%= f.id %>" class="dropdown-item">
           <%= f.name %><br>
@@ -50,11 +46,11 @@
           <% end %>
         </div>
       </li>
-      <div class="col-sm-4 col-md-4 pull-right">
+      <div class="col-sm-6 col-md-6 pull-right">
         <%= form_tag "/products", :method=>"get" do %>
         <div class="input-group">
           <%= text_field_tag :search, nil, :placeholder=>"Search for Vegetables", class: 'form-control' %>
-          <button class="btn btn-default input-group-btn" type="submit"><i class="glyphicon glyphicon-search">Search</i></button>
+          <button class="search" type="submit">Search</button>
         </div>
         <% end %>
       </div>
@@ -67,7 +63,7 @@
         <% if current_user.present? %><%= current_user.wishlists.count rescue nil %></span>
         <% end %>
         </a>
-      </li>
+      </li><br>
       <% if user_signed_in? %>
       <li class="nav-item">
         <a class="nav-link" href="/cart">
@@ -147,7 +143,7 @@
    @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
   body {
    font-family: 'Poppins', sans-serif;
-  cursor: progress;
+  cursor: default;
   margin:0;
   background-color: #2a2a72;
     background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
@@ -158,6 +154,23 @@
   {
  background-color: #7f53ac;
 background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
+  }
+  .form-control{
+    width: 100px;
+    position: absolute;
+  }
+  .search{
+    border: 1px solid #fff;
+    padding: 3px 15px;
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    background-color: transparent;
+  }
+  .search:hover {
+    color: #000;
+    background-color: #fff;
+
   }
   .btn:hover {
   background-position: right center; /* change the direction of the change here */
@@ -191,7 +204,7 @@ background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 1rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  
   }
   .btn {
   /*flex: 1 1 auto;*/

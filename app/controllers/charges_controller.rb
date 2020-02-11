@@ -23,7 +23,7 @@ class ChargesController < ApplicationController
       amount: @amount,
       description: 'Rails Stripe customer',
       # dee: '<%#= cart_item.product.description %>',
-      currency: 'usd',
+      currency: 'aed',
     })
 
    rescue Stripe::CardError => e

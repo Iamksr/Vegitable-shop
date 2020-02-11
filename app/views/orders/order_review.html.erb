@@ -1,73 +1,110 @@
-<script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
-<p id="notice"><%= notice %></p>
+<body>
 <div class="container">
-  <div class="card">
-    <div class="container-fliud">
-      <div class="wrapper row">
-        <div class="preview col-md-6">
-          <div class="preview-pic tab-content">
-            <div class="tab-pane active" id="pic-1"> <%= image_tag(@product.image_url, :size => "560x520") %></div>
-          </div>
-        </div>
-        <div class="details col-md-6">
-          <h3 class="product-title"><%= @product.name %></h3>
-          <div class='star-rating' data-score=<%= @avg_rating %>></div>
-          <strong><%= "#{@reviews.try(:size)} reviews" %></strong>
-          <p class="product-description"><strong>Description: </strong><%= @product.description %></p>
-          <h4 class="price">current price:<span>₹ <%= @product.price %></span> <del><span>₹ <%= @product.full_price %></span></del>(<%= @product.discount_percentage.to_f.round(2)%>%)</h4>
-          <!---------- Rating riview form -------------->
-          <% if current_user.present? %>
+<div class="banner">
+  <h1><%= @product.name%></h1>
+  <div class='star-rating' data-score="<%= @avg_rating %>"></div>
+                <strong><%= "#{@reviews.try(:size)} reviews" %></strong>
+  <h2><%= @product.description%></h2>
+  <h3>Price:₹<bold><%= @product.price%></bold>
+    <s>₹<%= @product.full_price%></s></h3>
+    <% if current_user.present? %>
           <%= form_for (RatingReview.new) do |f| %>
           <% if current_user.present? %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :product_id, value: @product.id %>
           <% end %>
-          <div id="rating-form" class="field col-lg-12 from-group">
+          <div id="rating-form" class="field col-lg-4 from-group">
             <label>Rating</label>
           </div>
-          <div class="field col-lg-12 from-group">
+          <div class="field col-lg-6 from-group">
             <%= f.label :review %>
             <%= f.text_area :review , :class => "form-control", autofocus: true %>
           </div>
-          <div class="field col-lg-12 from-group text-center ">
-            <%= f.submit "Submit", class: 'btn btn-success' %>
+          <div class="buttn ">
+            <%= f.submit "Submit", class: 'buy' %>
           </div>
-          <!-- ------  Review script ----------- -->
-          <script type="text/javascript">
+          <%end %>
+           <%end %>
+    <% @reviews.each do |review|%>
+    <div class='star-rating' data-score="<%= review.rating %>"></div><br>
+        "<%= review.review %>"
+        <h6>-<%= review.user.name %></h6><hr>
+  <% end %>
+</div>
+ <div class="picture">
+   <%= image_tag(@product.image_url, :size => "360x380") %>     
+   </div>
+ </div>
+<script type="text/javascript">
             $('#rating-form').raty({
               path: '/assets/',
               scoreName: 'rating_review[rating]'
             });
           </script>
-          <% end %>
-          <% end %>
-          <div class="action">
-            <!--  Product show rating  -->
-            <br><br>
-            <% @reviews.each do |review|%>
-            <div class='star-rating' data-score=<%= review.rating %>></div>
-            <br>
-            <%= review.review %>
-            <h6><%= review.user.name %></h6>
-            <hr>
-            <% end %>
-            <script>
-              $('.star-rating').raty({
-                path: '/assets/',
-                readOnly: true,
-                score: function() {
-                      return $(this).attr('data-score');
-              }
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+</body>
 <style type="text/css">
-  body{
-  background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
+   @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+  *{
+    
+    font-family: 'Poppins', sans-serif;
+  }
+  h1{
+     font-family: 'Poppins', sans-serif;
+      font-size: 5.1em;
+      font-weight: 500;
+      background: -webkit-linear-gradient(315deg, #F53803 10%, #F5D020 74%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-color: #9fa4c4;
+
+  }
+  h2{
+    font-family: 'Poppins', sans-serif;
+      font-size: 2.1em;
+  }
+  .form-control{
+    background-color: #4917e429;
+  }
+  h3{
+     font-family: 'Poppins', sans-serif;
+     font-size: 2.1em;
+     color: #3aff3a;
+  }
+  .picture{
+   top: 40%;
+    left: 70%;
+    margin-top: -20px;
+    padding-left: 60%;
+  }
+  .buy{
+    margin-top: 20px;
+    margin-left: 37%;
+  border: 2px solid #fff;
+   padding: 5px 20px;
+   color: #fff;
+   background-color: transparent;
+
+   border-radius: 10px;
+   text-decoration: none;
+   transform: 2.4s ease;
+  }
+  .buy:hover{
+    text-decoration: none;
+    background-color: #fff;
+    color: #000;
+  }
+  .container{
+    width: 100%;
+    height: 100%;
+    /*background: #42455a;*/
+  }
+  .banner{
+    width: 70%;
+    height: 70%;
+    top: 25%;
+    left: 130px;
+    position: absolute;
+    color: #fff;
   }
 </style>

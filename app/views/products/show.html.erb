@@ -2,11 +2,18 @@
 <div class="container">
 <div class="banner">
   <h1><%= @product.name%></h1>
+  <div class='star-rating' data-score="<%= @avg_rating %>"></div>
+                <strong><%= "#{@reviews.try(:size)} reviews" %></strong>
   <h2><%= @product.description%></h2>
   <h3>Price:₹<bold><%= @product.price%></bold>
     <s>₹<%= @product.full_price%></s></h3><br><br><br><br>
     <a class="btns" href="/products/<%= @product.id %>/cart"><span>Add to Cart</span></a>
     <a class="buy" href="/charges/new"><span>Buy Now</span></a>
+    <% @reviews.each do |review|%>
+    <div class='star-rating' data-score="<%= review.rating %>"></div><br>
+        <%= review.review %>
+        <h6><%= review.user.name %></h6><hr>
+  <% end %>
 </div>
  <div class="picture">
    <%= image_tag(@product.image_url, :size => "360x380") %>     
@@ -49,6 +56,21 @@
 
   .btns{
     margin top: 10px;
+  border: 2px solid #06ea06;
+   padding: 10px 30px;
+   color: #06ea06;   
+   border-radius: 10px;
+   text-decoration: none;
+   transform: 2.4s ease;
+  }
+  .btns:hover{
+    text-decoration: none;
+    background-color: #06ea06;
+    color: #fff;
+  }
+
+  .buy{
+    margin top: 10px;
   border: 2px solid red;
    padding: 10px 30px;
    color: red;   
@@ -56,7 +78,7 @@
    text-decoration: none;
    transform: 2.4s ease;
   }
-  .btns:hover{
+  .buy:hover{
     text-decoration: none;
     background-color: red;
     color: #000;
