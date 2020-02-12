@@ -24,8 +24,23 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in",class: "btn-hover color-login" %>
+    <%= f.submit "Log in",class: "login" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+<style type="text/css">
+  .login{
+  border: 1px solid #fff;
+  padding: 5px 50px;
+  color: #fff!important;
+  text-decoration: none;
+  transition: 1s ease;
+  background-color: transparent!important;
+  }
+  .login:hover{
+  background-color: #fff!important;
+  color: #000!important;
+  }
+  }
+</style>
