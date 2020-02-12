@@ -8,7 +8,6 @@
   <h3>Price:₹<bold><%= @product.price%></bold>
     <s>₹<%= @product.full_price%></s></h3><br><br><br><br>
     <a class="btns" href="/products/<%= @product.id %>/cart"><span>Add to Cart</span></a>
-    <a class="buy" href="/charges/new"><span>Buy Now</span></a>
     <% @reviews.each do |review|%>
     <div class='star-rating' data-score="<%= review.rating %>"></div><br>
         <%= review.review %>

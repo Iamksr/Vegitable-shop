@@ -82,6 +82,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/cart">My Carts</a>
+          <a class="dropdown-item" href="/product_all">Products</a>
           <a class="dropdown-item" href="/orders">My Orders</a>
           <a class="dropdown-item" href="/user_profile">My Profile</a>
           <a class="dropdown-item" href="/users/sign_out">Sign Out</a>
@@ -176,6 +177,20 @@ background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
   .navbar-dark .navbar-nav .nav-link {
   color: aliceblue;
   }
+  .navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+    background-color: rebeccapurple;
+  }
+  .dropdown-item{
+    background-color: rebeccapurple;
+    color: #fff;
+  }
+  .dropdown-item:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
   .container {
   display: flex;
   justify-content: center;

@@ -1,9 +1,11 @@
- <div class="card">
- <h5><%= personal_message.body %></h5></p>
-
- <h1>
-<p>at <%= personal_message.created_at %><br>
-  by <%= personal_message.user.name %></p></h1>
+<div class="card">
+  <div>
+    <h5><%= personal_message.body %>
+    <h1>
+      <p>at <%= personal_message.created_at %><br>
+    by <%= personal_message.user.name %></p>
+    </h1></h5></p>
+  </div>  
 </div>
 <style type="text/css">
 	@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
@@ -14,8 +16,8 @@
 	border-radius: 2px;
 	background-color: #a4508b;
   background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
-	width: 48%;
-	left: 30%
+	width: 49%;
+ margin-left: 29%;
 }
 
  h5 {

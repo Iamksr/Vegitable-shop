@@ -2,15 +2,17 @@
 
 <div id="conversation-main">
   <div id="conversation-body">
-
-    <%= render @conversation.personal_messages %>
+    <div class="dfhdfh">
+      <%= render @conversation.personal_messages %>
+    </div>
+    
   </div>
 
   <%= form_for @personal_message do |f| %>
     <%= hidden_field_tag 'conversation_id', @conversation.id %>
-    <div class="col-sm-6">
+    <div class="area">
 
-    <%= f.text_area :body,class: "form-control", placeholder: "Enter Your Message......." %>
+ <%= f.text_area :body,class: "form-control", placeholder: "Enter Your Message......." %>
  </div>
    <center><%= f.submit "Send",class: "btn-hover color-login" %></center>
   <% end %>
@@ -21,8 +23,17 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.col-sm-6{
-	margin-left: 29%;
+#conversation-body {
+    /* margin: 0px; */
+    /* padding: 0px; */
+    overflow-y: scroll;
+    /* width: 90%; */
+    /* z-index: 999; */
+    height: 63%;
+}
+.area{
+  width: 48%;
+ margin-left: 29%;
 }
 .form-control{
 	    background-color: #0000008a;

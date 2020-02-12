@@ -3,18 +3,16 @@
   <h2>New message to <%= @receiver.name%></h2>
 </center>
 <%= hidden_field_tag 'receiver_id', @receiver.id %>
-<div class="col-sm-6">
+<div class="area">
   <%= f.text_area :body,class: "form-control", placeholder: "Enter Your Message......." %>
   <center><%= f.submit "Send",class: "btn-hover color-login" %></center>
 </div>
 <%end%>
 <style type="text/css">
-  .form-control{
-  background-color: #0000008a;
-  }
-  .col-sm-6{
-  margin-left: 29%;
-  }
+ .area{
+  width: 150%;
+  margin: 20px;
+ }
   h2 {
   font-size: 2.1em;
   font-weight: 600;

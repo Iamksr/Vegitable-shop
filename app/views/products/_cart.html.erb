@@ -4,7 +4,7 @@
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjDjBRgpEykhxeIgjoNZC7vNlzCXJKMhFD5hX-ED8_gD1hz2Ff" style="height:277px;width:277px;">
 <h1>Your Cart is empty!</h1>
 <span>Add items to it Now!</span><br>
-      <%= link_to 'Shop Now',  products_path, class: "btn btn-danger" %>
+      <%= link_to 'Shop Now',  products_path, class: "buynow" %>
 </center>
 
 <% else %>
@@ -121,6 +121,17 @@ img {
     border-style: none;
     width: 100px;
     height: 100px;
+  }
+  .buynow{
+    color: #fff;
+    padding: 5px 15px;
+    background-color: red;
+    border-radius: 5px;
+  }
+  .buynow:hover{
+    padding: 5px 17px;
+    text-decoration: none;
+    color: #000;
   }
 .dec{
   background-color: red;

@@ -1,21 +1,29 @@
-<html>
-<head>
-<title>PDF</title>
-  <%#= wicked_pdf_stylesheet_link_tag "application" %>
+<body>
+<div class="container">
   <%= stylesheet_link_tag "http://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"%>
   <%= javascript_include_tag "http://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"%>
-</head>
-<body>  
-  <p id="notice"><%= notice %></p>
-  <h4 class="order_header text-center">Orders History PDF</h4><br>
+  <h1>Order Reciept</h1>  
+      <div class="row">
+       <div class="detail">
+       <h2>Purchased By</h2>
+       <th>Buyer Name: </th><td><%= current_user.name%></td><br>
+       <th>Buyer Email: </th><td><%= current_user.email%></td><br>
+       <% if current_user.orders.present? %>
+        <% @orders.each do |order| %>
 
-  <div class="container">
-  <div class="row">
-    <table class="table table-hover table-bordered">
+       <th>Order Time: </th><%= order.created_at.strftime "%a, %-d %b %Y %I:%M %p" %></td><br>
+       <%end%>
+       <%end%>
+       <th>Order Type: </th>Web Online</td><br>
+       <th>Payment Method: </th>Online Payment</td>
+
+     </div>
+     
+           <table class="table table-striped">
       <thead>
         <tr>
           <th>Product Name</th>
-          <th>Date&Time</th>
+          <th>Date & Time</th>
           <th>Address</th>
           <th>Quantity</th>
           <th>Price</th>
@@ -26,16 +34,14 @@
       <tbody>
         <% if current_user.orders.present? %>
         <% @orders.each do |order| %>
-            <tr>
-              <th>ORDER ID: <%= order.id %> (<%= order.user.name %>)</th>
-            </tr>
+          
           <% order.cart.cart_items.each do |item| %>
             <% product_id = item.product_id
               product = Product.unscoped.find(product_id) %> 
             <% if product.present? %> 
             <tr>
               <td><%= product.name %></td>
-              <!-- <td><#%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td> -->
+            <td><%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td>
                 <% address_id = order.address_id %>
                 <% @add = Address.find_by(id: address_id)%>
               <% if @add.present? %>
@@ -44,31 +50,53 @@
               <td><%= item.quantity %></td>
               <td><%= product.price  %></td>
               <td><%= item.quantity * product.price %></td>
-             <!--  <td><%#= image_tag product.image.url(:thumb) rescue nil %></td>  -->
               <% if item.product.present? %>
-              <td>
-                <!-- <div class="btn btn-warning"><a href="/order_review/<%#= product.id %>">Review</a></div> -->
-              </td>
               <% end %>
             </tr>
             <% end %>
           <% end %>
             <tr>
+             
+                <tr>
+              <th>ORDER ID: <%= order.id %> (<%= order.user.name %>)</th>
+            </tr>
+             <th></th>
               <th></th>
               <th></th>
-              <th></th>
+              <br>
               <th><div class="p-2 mb-2 bg-success text-white float-left" style="margin-left: 10%" ><%= order.cart.quantity %></div></th>
               <th></th>
-              <th><div class="p-2 mb-2 bg-success text-white  float-left" style="margin-left: 10%" ><%= order.total %></div></th>
+              <th><div class="p-2 mb-2 bg-success text-white  float-left" style="margin-left: 10%" >Order Total:<%= order.total %>.00 INR</div></th>
             </tr>
         <% end %>
         <% end %>
       </tbody>
-    </table><br><br>
-  </div>
-</div><br>
+      </table>
+      <div class="farm">
+      <h2>Purchase From</h2>
+      <th>Shop Name: </th><td>Veg Shop Pvt. Ltd.</td><br>
+      <th>Shop Address: </th><td>B-41, Noida Sec-2,U.P,India</td><br>
 
-    <%= yield %>
-  <!-- </div> -->
+     </div>
+    </div>
+</div>
 </body>
-</html>
+<style type="text/css">
+    @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+  
+  h2{
+    font-size: 2.0em;
+    font-weight: 400px;
+  }
+  .table-striped{
+    margin-top: 10%;
+  }
+  .detail{
+    margin-top: 5%;
+    margin-left: 10%;
+  }
+  .farm{
+    margin-top: 15%;
+    margin-left: 70%
+  }
+</style>

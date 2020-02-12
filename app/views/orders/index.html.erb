@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h4 class="order_header text-center">Orders History</h4>
- <%= link_to  'Create PDF',  order_pdf_path(format: :pdf), class: "btn btn-info btn-sm float-right", data: {toggle: "tooltip", title: "View PDF Agreement"}%><br><br>
+ 
 <table class="table table-hover">
   <thead>
     <tr>
@@ -10,8 +10,6 @@
       <th>Quantity</th>
       <th>Price</th>
       <th>Total</th>
-      <th>Image</th>
-     <!--  <th>Order Rating</th -->
     </tr>
   </thead>
 
@@ -34,7 +32,7 @@
         <% if product.present? %> 
         <tr>
           <td><%= product.name rescue nil %></td>
-          <td><%= order.created_at %></td>
+          <td><%= order.created_at.strftime "%a, %-d %b %Y %I:%M %p" %></td>
             <% address_id = order.address_id %>
             <% @add = Address.find_by(id: address_id)%>
           <% if @add.present? %>
@@ -43,9 +41,10 @@
           <td><%= item.quantity rescue nil %></td>
           <td><%= product.price  || 0.0  rescue nil %></td>
           <td><%= item.quantity * product.price  || 0.0 rescue nil  %></td>
+          <td><%= image_tag product.image.url(:thumb) rescue nil %></td> 
           <% if item.product.present? %>
           <td>
-            <div class="btn btn-warning"><a href="/order_review/<%= product.id %>">Review</a></div>
+          <a href="/order_review/<%= product.id %>" class="review" >Review</a>
           </td>
           <% end %>
         </tr>
@@ -64,12 +63,30 @@
     <% end %>
     <% end %>
   </tbody>
-</table><br><br>
 
+</table>
+
+ <center><%= link_to order_pdf_path(format: :pdf), class: "pdf", data: {toggle: "tooltip", title: "View PDF Agreement"} do %></i><img src="https://www.abvt.com.au/wp-content/uploads/2019/10/download-pdf.png">
+   <%end%>
+ </center>
 <style type="text/css">
 body{
   position: relative;
     background: linear-gradient(to right, rgba(255, 255, 255, 0.7686274509803922), rgba(255, 255, 255, 0.7686274509803922)), url("https://images3.alphacoders.com/103/thumb-1920-1038304.jpg") no-repeat center center fixed;
     background-size: cover;
   }
+ img {
+  width: 200px;
+ }
+ .review{
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 5px 10px;
+  background-color: transparent;
+ }
+ .review:hover{
+  color: #000;
+  background-color: #fff;
+  text-decoration: none;
+ }
 </style>

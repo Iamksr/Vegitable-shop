@@ -1,24 +1,17 @@
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-<% end %>
 
-<% if flash[:alert] %>
-  <div class="alert" id ="alert"><%= flash[:alert] %></div>
-<% end %>
-<div class="container">
-<div class="button">
-  <a href="/addresses/new" class="address">Add New Address<i class="fa fa-home"></i></a>
-
-</div>
+<br>
+<h1>Select Your Address</h1>
+  <center><a href="/addresses/new" class="address">Add New  Address<i class="fa fa-home"></i></a>
+  </button></center>
   <% if current_user.addresses.present? %>
   <%= form_tag orders_path do |f| %>
    <noscript>You must <a href="http://www.enable-javascript.com" target="_blank">enable JavaScript</a> in your web browser in order to pay via Stripe.</noscript>
       
       <%= hidden_field_tag :cart_id, value = current_user.cart.id %>
        <% current_user.addresses.each do |add| %>
-            <label class="radio"><input type="radio" name="address_id"  value= "<%= add.id %>"><%= add.full_address %></label>
+            <label class="radio"><input type="radio" name="address_id"  value= "<%= add.id %>"><%= add.full_address %></label><br><br>
         <% end %>
-    
+  
         <center>
   <article>
     <% if flash[:error].present? %>
@@ -32,7 +25,7 @@
     </label>
     <% else %>
     <label class="amount">
-      <h2>Total Amount:<%= current_cart.sub_total %></h2>
+      <span>Total Amount:<%= current_cart.sub_total %></span>
     </label>
     <% end %>
   </article>
@@ -40,16 +33,14 @@
 
     <input 
           type="submit" disabled="disabled" class="disabled"
-          value="Pay with Card"
-          color="red"
+          value="Pay Here"
+          color="blue"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
+          data-description="PayPal 100% Secured"
           data-amount="<%= current_cart.sub_total * 100%>"
           data-name="<%= current_user.name %>"
           data-email="<%= current_user.email%>"
           />
-        </center>
-      </div>
 
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script src="https://checkout.stripe.com/v2/checkout.js"></script>
@@ -82,7 +73,23 @@
   body{
   background-image: linear-gradient(to right, #fbe2eb 0%, #a9c1ee 51%, #fbe2eb 100%);
 }
-.container {
+.radio{
+   
+  padding: 10px 30px;
+  color: #fff;
+  background-color: green;
+}
+.disabled{
+  border: 1px solid transparent;
+  padding: 10px 100px;
+  color: #fff;
+  background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
+}
+.disabled:hover{
+  color: #fff;
+   transition: background-color 1.5s;
+}
+.container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,22 +99,34 @@
   margin: 0 auto;
   min-height: 100vh;
 }
-.button{ margin-top: 8%;
-          position: absolute;
-          top: 20%;
-          left: 50%;
-          transform: translate(-50%,-50%);
-         }  
-         .address{
-          border: 1px solid #fff;
-          padding: 10px 30px;
-          color: #fff;
-          text-decoration: none;
-          transition: 1s ease;
-         }
-           .address:hover{
-             background-color: #fff;
-            color: #000;
-            text-decoration: none;
-           }
+.address{
+  border: 1px solid #fff;
+  padding: 10px 30px;
+  color: #fff;
+  background-color: transparent;
+}
+.address:hover{
+  color: #000;
+  background-color: #fff;
+  text-decoration: none;
+   transition: background-color 1.5s;
+}
+.amount{
+   padding: 10px 30px;
+   background-color: green;
+   color: #fff;
+}
+.btn {
+  /*flex: 1 1 auto;*/
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 50% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 4px;
+ }
 </style>
