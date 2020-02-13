@@ -5,17 +5,13 @@
   <h1>Order Reciept</h1>  
       <div class="row">
        <div class="detail">
+           <% if current_user.orders.present? %>
        <h2>Purchased By</h2>
        <th>Buyer Name: </th><td><%= current_user.name%></td><br>
        <th>Buyer Email: </th><td><%= current_user.email%></td><br>
-       <% if current_user.orders.present? %>
-        <% @orders.each do |order| %>
-
-       <th>Order Time: </th><%= order.created_at.strftime "%a, %-d %b %Y %I:%M %p" %></td><br>
-       <%end%>
-       <%end%>
-       <th>Order Type: </th>Web Online</td><br>
-       <th>Payment Method: </th>Online Payment</td>
+       <th>Printed On: </th><td><%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td><br>
+       <th>Order Type: </th><td>Web Online</td><br>
+       <th>Payment Method: </th><td>Online Payment</td>
 
      </div>
      
@@ -32,7 +28,7 @@
       </thead>
 
       <tbody>
-        <% if current_user.orders.present? %>
+     
         <% @orders.each do |order| %>
           
           <% order.cart.cart_items.each do |item| %>
@@ -41,7 +37,8 @@
             <% if product.present? %> 
             <tr>
               <td><%= product.name %></td>
-            <td><%= Time.now.strftime "%a, %-d %b %Y %I:%M %p" %></td>
+            <td>
+              <%= order.created_at.strftime "%a, %-d %b %Y %I:%M %p" %></td>
                 <% address_id = order.address_id %>
                 <% @add = Address.find_by(id: address_id)%>
               <% if @add.present? %>
@@ -57,7 +54,7 @@
           <% end %>
             <tr>
              
-                <tr>
+            <tr>
               <th>ORDER ID: <%= order.id %> (<%= order.user.name %>)</th>
             </tr>
              <th></th>
@@ -70,6 +67,7 @@
             </tr>
         <% end %>
         <% end %>
+        
       </tbody>
       </table>
       <div class="farm">
