@@ -72,7 +72,7 @@ element.style {
             map.setZoom(5);
         });
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: 12,
       center: new google.maps.LatLng(<%= @map_data.first[1] %>, <%= @map_data.first[2] %>),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -96,10 +96,16 @@ element.style {
       $("#loc").val(locations[i][0]);
         google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
         return function() {
-        var Content = '<div class="card">' + '<h3 class="card-title">' + locations[i][4] + '</h3>' + " " + '<div class="card-text">'  + locations[i][5]+locations[i][6] + '</div>' + '</div>' + '<br>' + '<a href=" /products/user/' + locations[i][7] + '", class="button button-3 button-3c icon-heart-2">Visit My Shop</a>' + '<br>' + '<a href="/personal_messages/new?receiver_id=' + locations[i][7] + '", class="button button-4 button-4c icon-arrow-right", i class="fa fa-arrow-right">Chat With Us!</a>' 
-              infowindow.setContent(Content);
-              infowindow.open(map, marker);
-        }
+            var current = <%= current_user.id %>
+            console.log("*****************", current);
+            var Content = '<div class="card">' + '<h3 class="card-title">' + locations[i][4] + '</h3>' + " " + '<div class="card-text">'  + locations[i][5]+locations[i][6] + '</div>' + '</div>' + '<br>' + (current == locations[i][7] ? '<a href=" /products/user/' + locations[i][7] + '", class="button button-3 button-3c icon-heart-2">Visit My Shop</a>'
+              + '<br>' + '' : 
+                    '<a href="/personal_messages/new?receiver_id=' + locations[i][7] + '", class="button button-4 button-4c icon-arrow-right", i class="fa fa-arrow-right">Chat With Us!</a>' + '<br/>' + '<a href=" /products/user/' + locations[i][7] + '", class="button button-3 button-3c icon-heart-2">Visit My Shop</a>'
+                )
+                  infowindow.setContent(Content);
+                  infowindow.open(map, marker);
+            }
+        
       })(marker, i));
     }
   });

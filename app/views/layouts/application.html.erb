@@ -63,6 +63,12 @@
         <% if current_user.present? %><%= current_user.wishlists.count rescue nil %></span>
         <% end %>
         </a>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+         
+          <% if current_user.present? %><%= @conversation.author.personal_messages.count rescue nil %></span>
+          <% end %>
+        </li>
       </li><br>
       <% if user_signed_in? %>
       <li class="nav-item">
